@@ -35,19 +35,20 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
+        android:id="@+id/searchText"
         android:inputType="text"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/imageButton">
+        android:theme="@style/MyEditTextTheme"
+        android:layout_toStartOf="@+id/searchButton">
     </EditText>
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageButton"
-        android:layout_alignBottom="@+id/editText"
-        android:layout_alignTop="@+id/editText"
+        android:id="@+id/searchButton"
+        android:layout_alignBottom="@+id/searchText"
+        android:layout_alignTop="@+id/searchText"
         android:layout_alignEnd="@+id/button3"
         android:contentDescription="@string/imgDescription"
         android:src="@android:drawable/ic_menu_search"/>
