@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
@@ -20,38 +20,40 @@
         android:elegantTextHeight="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="@dimen/_120sdp"
-        android:layout_height="@dimen/_120sdp"
-        android:text="@string/favs"
-        android:id="@+id/button2"
-
-        android:drawableTop="@android:drawable/star_big_off"
-        android:paddingTop="@dimen/_40sdp"
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/searchText"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:layout_width="@dimen/_120sdp"
-        android:layout_height="@dimen/_120sdp"
-        android:text="@string/topics"
-        android:id="@+id/button"
-        android:layout_marginTop="44dp"
-        android:layout_below="@+id/button2"
         android:layout_centerHorizontal="true"
-        android:drawableTop="@android:drawable/sym_action_chat"
-        android:paddingTop="@dimen/_40sdp"/>
+        android:id="@+id/relativeLayout">
+        <Button
+            android:layout_width="@dimen/_110sdp"
+            android:layout_height="@dimen/_110sdp"
+            android:text="@string/favs"
+            android:id="@+id/button2"
 
-    <Button
-        android:layout_width="@dimen/_120sdp"
-        android:layout_height="@dimen/_120sdp"
-        android:text="@string/hist"
-        android:id="@+id/button3"
-        android:layout_alignTop="@+id/button2"
-        android:layout_alignParentEnd="true"
-        android:drawableTop="@android:drawable/ic_menu_view"
-        android:paddingTop="@dimen/_40sdp"/>
+            android:drawableTop="@android:drawable/star_big_off"
+            android:paddingTop="@dimen/_20sdp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="@dimen/_40sdp" />
+            <!--android:layout_below="@+id/searchText"-->
+            <!--android:layout_alignStart="@+id/imageView2"-->
+
+
+        <!--android:layout_toEndOf="@+id/imageView2" />-->
+
+        <Button
+            android:layout_width="@dimen/_110sdp"
+            android:layout_height="@dimen/_110sdp"
+            android:text="@string/hist"
+            android:id="@+id/button3"
+            android:drawableTop="@android:drawable/ic_menu_view"
+            android:paddingTop="@dimen/_20sdp"
+            android:layout_alignTop="@+id/button2"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+
 
     <EditText
         android:layout_width="fill_parent"
@@ -61,6 +63,7 @@
         android:theme="@style/MyEditTextTheme"
         android:layout_below="@+id/textView"
         android:layout_alignParentStart="true"
+        android:textColor="@android:color/black"
         android:layout_toStartOf="@+id/searchButton">
     </EditText>
 
@@ -68,20 +71,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/searchButton"
-        android:layout_alignBottom="@+id/searchText"
-        android:layout_alignTop="@+id/searchText"
-        android:layout_alignEnd="@+id/button3"
         android:contentDescription="@string/imgDescription"
-        android:src="@android:drawable/ic_menu_search"/>
+        android:src="@android:drawable/ic_menu_search"
+        android:layout_alignBottom="@+id/searchText"
+        android:layout_alignParentEnd="true" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:layout_alignEnd="@+id/button2"
-        android:layout_alignParentStart="true"
+        android:id="@+id/imageView2"
+        android:src="@drawable/ipol"
         android:layout_alignTop="@+id/textView"
-        android:src="@"/>
+        android:layout_toStartOf="@+id/textView"
+        android:layout_above="@+id/searchText" />
+
+    <Button
+        android:layout_width="@dimen/_110sdp"
+        android:layout_height="@dimen/_110sdp"
+        android:text="@string/topics"
+        android:id="@+id/button"
+        android:drawableTop="@android:drawable/sym_action_chat"
+        android:paddingTop="@dimen/_20sdp"
+        android:layout_below="@+id/relativeLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_30sdp" />
 
 
 </RelativeLayout>
