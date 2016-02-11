@@ -19,14 +19,27 @@
         android:elegantTextHeight="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:src="@drawable/ipol"
+        android:layout_alignTop="@+id/title"
+        android:layout_toStartOf="@+id/title"
+        android:contentDescription="@string/ipolIcon"
+        android:layout_above="@+id/relativeLayout" />
+
+
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@+id/searchText"
-        android:layout_centerHorizontal="true"
         android:id="@+id/relativeLayout"
-        android:paddingTop="@dimen/_20sdp"
-        android:orientation="vertical">
+        android:paddingTop="@dimen/_30sdp"
+        android:orientation="vertical"
+        android:layout_below="@+id/title"
+        android:layout_alignParentStart="true">
+
         <Button
             android:layout_width="fill_parent"
             android:layout_height="@dimen/_110sdp"
@@ -50,38 +63,6 @@
             android:id="@+id/topicButton"
             android:drawableTop="@android:drawable/sym_action_chat" />
     </LinearLayout>
-
-
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/searchText"
-        android:inputType="text"
-        android:theme="@style/MyEditTextTheme"
-        android:layout_below="@+id/title"
-        android:layout_alignParentStart="true"
-        android:textColor="@android:color/black"
-        android:layout_toStartOf="@+id/searchButton">
-    </EditText>
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/searchButton"
-        android:contentDescription="@string/imgDescription"
-        android:src="@android:drawable/ic_menu_search"
-        android:layout_alignBottom="@+id/searchText"
-        android:layout_alignParentEnd="true" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView2"
-        android:src="@drawable/ipol"
-        android:layout_alignTop="@+id/title"
-        android:layout_toStartOf="@+id/title"
-        android:layout_above="@+id/searchText"
-        android:contentDescription="@string/ipolIcon"/>
 
 
 </RelativeLayout>
