@@ -13,46 +13,43 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/app_name2"
-        android:id="@+id/textView"
+        android:id="@+id/title"
         android:textSize="@dimen/_40sdp"
         android:textColor="@android:color/secondary_text_light"
-        android:editable="false"
         android:elegantTextHeight="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:layout_below="@+id/searchText"
         android:layout_centerHorizontal="true"
-        android:id="@+id/relativeLayout">
+        android:id="@+id/relativeLayout"
+        android:paddingTop="@dimen/_20sdp"
+        android:orientation="vertical">
         <Button
-            android:layout_width="@dimen/_110sdp"
+            android:layout_width="fill_parent"
             android:layout_height="@dimen/_110sdp"
             android:text="@string/favs"
-            android:id="@+id/button2"
-
+            android:id="@+id/favsButton"
             android:drawableTop="@android:drawable/star_big_off"
-            android:paddingTop="@dimen/_20sdp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="@dimen/_40sdp" />
-            <!--android:layout_below="@+id/searchText"-->
-            <!--android:layout_alignStart="@+id/imageView2"-->
-
-
-        <!--android:layout_toEndOf="@+id/imageView2" />-->
+            android:paddingTop="@dimen/_20sdp" />
 
         <Button
-            android:layout_width="@dimen/_110sdp"
+            android:layout_width="fill_parent"
             android:layout_height="@dimen/_110sdp"
             android:text="@string/hist"
-            android:id="@+id/button3"
+            android:id="@+id/histButton"
             android:drawableTop="@android:drawable/ic_menu_view"
-            android:paddingTop="@dimen/_20sdp"
-            android:layout_alignTop="@+id/button2"
-            android:layout_alignParentEnd="true" />
-    </RelativeLayout>
+            android:paddingTop="@dimen/_20sdp" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/_110sdp"
+            android:text="@string/topics"
+            android:id="@+id/topicButton"
+            android:drawableTop="@android:drawable/sym_action_chat" />
+    </LinearLayout>
 
 
     <EditText
@@ -61,7 +58,7 @@
         android:id="@+id/searchText"
         android:inputType="text"
         android:theme="@style/MyEditTextTheme"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/title"
         android:layout_alignParentStart="true"
         android:textColor="@android:color/black"
         android:layout_toStartOf="@+id/searchButton">
@@ -81,20 +78,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageView2"
         android:src="@drawable/ipol"
-        android:layout_alignTop="@+id/textView"
-        android:layout_toStartOf="@+id/textView"
-        android:layout_above="@+id/searchText" />
-
-    <Button
-        android:layout_width="@dimen/_110sdp"
-        android:layout_height="@dimen/_110sdp"
-        android:text="@string/topics"
-        android:id="@+id/button"
-        android:drawableTop="@android:drawable/sym_action_chat"
-        android:paddingTop="@dimen/_20sdp"
-        android:layout_below="@+id/relativeLayout"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/_30sdp" />
+        android:layout_alignTop="@+id/title"
+        android:layout_toStartOf="@+id/title"
+        android:layout_above="@+id/searchText"
+        android:contentDescription="@string/ipolIcon"/>
 
 
 </RelativeLayout>
