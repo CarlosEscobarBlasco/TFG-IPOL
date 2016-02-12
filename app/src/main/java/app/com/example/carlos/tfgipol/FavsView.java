@@ -2,15 +2,15 @@ package app.com.example.carlos.tfgipol;
 
 import android.app.Activity;
 import android.app.ListActivity;
-import android.os.Debug;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+
+import adapters.Lista_adaptador;
 
 public class FavsView extends Activity {
 
@@ -21,23 +21,28 @@ public class FavsView extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favs_view);
+        ArrayList<String> datos = new ArrayList<>();
+        datos.add("Lunes");
+        datos.add("Martes");
+        datos.add("Miercoles");
+        datos.add("Jueves");
+        datos.add("Viernes");
+        datos.add("Sabado");
+        datos.add("Domingo");
+        datos.add("Domingo");
+        datos.add("Domingo");
 
-        mainListView = (ListView) findViewById( R.id.listView_favs);
-        String[] planets = new String[] { "Mercury", "Venus", "Earth", "Mars",
-                "Jupiter", "Saturn", "Uranus", "Neptune","Prueba","Prueba2"};
+        mainListView = (ListView) findViewById(R.id.list);
+        mainListView.setAdapter(new Lista_adaptador(this,R.layout.simplerow,datos) {
+            @Override
+            public void onEntrada(Object entrada, View view) {
+                if (entrada != null) {
+                    TextView rowTextView = (TextView) view.findViewById(R.id.rowTextView);
+                    rowTextView.setText((String) entrada);
+                }
+            }
+        });
 
-        ArrayList<String> planetList = new ArrayList<>();
-        planetList.addAll( Arrays.asList(planets) );
-
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                this,
-                R.layout.simplerow,
-                planetList);
-
-        // 3. Call setListAdapter
-        //setListAdapter(adapter);
-        mainListView.setAdapter(adapter);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
 }
