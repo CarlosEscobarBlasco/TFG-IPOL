@@ -15,8 +15,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".FavsView" >
+        </activity>
+        <activity android:name=".TopicsView" >
+        </activity>
+        <activity android:name=".HistoryView" >
         </activity>
     </application>
 

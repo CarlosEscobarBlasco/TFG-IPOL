@@ -22,7 +22,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView2"
+        android:id="@+id/titleImage"
         android:src="@drawable/ipol"
         android:layout_alignTop="@+id/title"
         android:layout_toStartOf="@+id/title"
@@ -43,6 +43,13 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="@dimen/_110sdp"
+            android:text="@string/topics"
+            android:id="@+id/topicButton"
+            android:drawableTop="@android:drawable/sym_action_chat" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/_110sdp"
             android:text="@string/favs"
             android:id="@+id/favsButton"
             android:drawableTop="@android:drawable/star_big_off"
@@ -56,12 +63,6 @@
             android:drawableTop="@android:drawable/ic_menu_view"
             android:paddingTop="@dimen/_20sdp" />
 
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="@dimen/_110sdp"
-            android:text="@string/topics"
-            android:id="@+id/topicButton"
-            android:drawableTop="@android:drawable/sym_action_chat" />
     </LinearLayout>
 
 

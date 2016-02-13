@@ -18,7 +18,32 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void activateButtons() {
+
         activateFavsButton();
+        activateHistoryButton();
+        activateTopicsButton();
+    }
+
+    private void activateHistoryButton() {
+        favsButton = (Button) findViewById(R.id.histButton);
+        favsButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, HistoryView.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void activateTopicsButton() {
+        favsButton = (Button) findViewById(R.id.topicButton);
+        favsButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, TopicsView.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void activateFavsButton() {
