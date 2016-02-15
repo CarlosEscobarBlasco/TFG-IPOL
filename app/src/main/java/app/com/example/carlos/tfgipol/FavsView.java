@@ -4,34 +4,46 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import adapters.ListAdaptor;
+import adapters.ListAdapter;
 
 import model.Favourites;
+import model.rowData;
 
 public class FavsView extends Activity {
 
     private ListView mainListView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favs_view);
+        loadList(savedInstanceState);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+    }
 
+    private void loadList(final Bundle savedInstanceState) {
         mainListView = (ListView) findViewById(R.id.list);
-        mainListView.setAdapter(new ListAdaptor(this,R.layout.text_and_button_row, Favourites.getInstance().getFavourites()) {
+        mainListView.setAdapter(new ListAdapter(this, R.layout.text_and_button_row, Favourites.getInstance().getFavourites()) {
             @Override
-            public void input(Object input, View view) {
+            public void input(final Object input, View view) {
+                final ImageButton favButton = (ImageButton) view.findViewById(R.id.rowFavButton);
                 if (input != null) {
                     TextView rowTextView = (TextView) view.findViewById(R.id.rowTextView);
-                    rowTextView.setText((String) input);
+                    rowTextView.setText(((rowData) input).getName());
+                    favButton.setImageResource(((rowData) input).getImage());
+                    favButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ((rowData) input).removeFromFavourites();
+                            onCreate(savedInstanceState);
+                        }
+                    });
                 }
             }
         });
-
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
 }

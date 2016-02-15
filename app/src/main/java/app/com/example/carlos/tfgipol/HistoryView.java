@@ -7,14 +7,12 @@ import android.view.WindowManager;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import adapters.ListAdaptor;
-import dataRecolectors.DataRecolector;
+import adapters.ListAdapter;
 import dataRecolectors.MockRecolector;
 
 public class HistoryView extends AppCompatActivity {
 
     private ListView mainListView;
-    private DataRecolector recolector = new MockRecolector();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +20,7 @@ public class HistoryView extends AppCompatActivity {
         setContentView(R.layout.activity_activity_history_view);
 
         mainListView = (ListView) findViewById(R.id.list);
-        mainListView.setAdapter(new ListAdaptor(this, R.layout.text_and_button_row, recolector.getData()) {
+        mainListView.setAdapter(new ListAdapter(this, R.layout.text_and_button_row, MockRecolector.getInstance().getData()) {
             @Override
             public void input(Object input, View view) {
                 if (input != null) {

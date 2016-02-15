@@ -8,15 +8,13 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import adapters.ListAdaptor;
-import dataRecolectors.DataRecolector;
+import adapters.ListAdapter;
 import dataRecolectors.MockRecolector;
-import model.Favourites;
+import model.rowData;
 
 public class TopicsView extends AppCompatActivity {
 
     private ListView mainListView;
-    private DataRecolector recolector = new MockRecolector();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,23 +26,23 @@ public class TopicsView extends AppCompatActivity {
 
     private void loadList() {
         mainListView = (ListView) findViewById(R.id.list);
-        mainListView.setAdapter(new ListAdaptor(this, R.layout.text_and_button_row, recolector.getData()) {
+        mainListView.setAdapter(new ListAdapter(this, R.layout.text_and_button_row, MockRecolector.getInstance().getData()) {
             @Override
             public void input(final Object input, View view) {
+                final ImageButton favButton = (ImageButton) view.findViewById(R.id.rowFavButton);
                 if (input != null) {
                     TextView rowTextView = (TextView) view.findViewById(R.id.rowTextView);
-                    rowTextView.setText((String) input);
+                    rowTextView.setText(((rowData) input).getName());
+                    favButton.setImageResource(((rowData) input).getImage());
+                    favButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ((rowData) input).addToFavourites();
+                            favButton.setImageResource(((rowData) input).getImage());
+                        }
+                    });
                 }
-                final ImageButton favouriteButton = (ImageButton) view.findViewById(R.id.rowFavButton);
-                favouriteButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        favouriteButton.setImageResource(R.drawable.full_star);
-                        Favourites.getInstance().addFavourite((String)input);
-                    }
-                });
             }
         });
-
     }
 }

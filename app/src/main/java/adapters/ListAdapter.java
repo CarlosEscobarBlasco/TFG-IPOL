@@ -10,13 +10,13 @@ import android.widget.BaseAdapter;
 /** Adaptador de ListView universal, para www.jarroba.com
  * @author Ramon Invarato Menéndez
  */
-public abstract class ListAdaptor extends BaseAdapter {
+public abstract class ListAdapter extends BaseAdapter {
 
     private ArrayList<?> inputs;
     private int R_layout_IdView;
     private Context context;
 
-    public ListAdaptor(Context contexto, int R_layout_IdView, ArrayList<?> entradas) {
+    public ListAdapter(Context contexto, int R_layout_IdView, ArrayList<?> entradas) {
         super();
         this.context = contexto;
         this.inputs = entradas;

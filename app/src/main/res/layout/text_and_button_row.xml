@@ -14,7 +14,6 @@
         android:id="@+id/rowFavButton"
         android:layout_width="@dimen/_30sdp"
         android:layout_height="@dimen/_30sdp"
-        android:src="@drawable/empty_star"
         android:scaleType="fitCenter"
         android:background="@android:color/background_light" />
 
