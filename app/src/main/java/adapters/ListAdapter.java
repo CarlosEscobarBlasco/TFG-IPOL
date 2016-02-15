@@ -7,9 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-/** Adaptador de ListView universal, para www.jarroba.com
- * @author Ramon Invarato Menéndez
- */
 public abstract class ListAdapter extends BaseAdapter {
 
     private ArrayList<?> inputs;

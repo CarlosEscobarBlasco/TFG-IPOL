@@ -1,15 +1,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
- android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
 
-    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    <TextView
         android:id="@+id/rowTextView"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/_40sdp"
+        android:layout_width="@dimen/_250sdp"
+        android:layout_height="wrap_content"
         android:padding="10dp"
         android:textSize="16sp"
-        android:textColor="@android:color/black"
-        android:layout_weight="0.80">
-    </TextView>
+        android:textColor="@android:color/black" />
+
     <ImageButton
         android:id="@+id/rowFavButton"
         android:layout_width="@dimen/_30sdp"

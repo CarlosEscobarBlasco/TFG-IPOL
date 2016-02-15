@@ -2,8 +2,10 @@ package app.com.example.carlos.tfgipol;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -26,6 +28,7 @@ public class TopicsView extends AppCompatActivity {
 
     private void loadList() {
         mainListView = (ListView) findViewById(R.id.list);
+        mainListView.setClickable(true);
         mainListView.setAdapter(new ListAdapter(this, R.layout.text_and_button_row, MockRecolector.getInstance().getData()) {
             @Override
             public void input(final Object input, View view) {
@@ -42,6 +45,12 @@ public class TopicsView extends AppCompatActivity {
                         }
                     });
                 }
+            }
+        });
+        mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("Mensaje: ",id+"");
             }
         });
     }
