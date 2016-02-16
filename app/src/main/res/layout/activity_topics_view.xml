@@ -38,8 +38,7 @@
         android:textColor="@android:color/black"
         android:layout_toStartOf="@+id/searchButton"
         android:autoText="false"
-        android:inputType="text">
-    </EditText>
+        android:inputType="text"/>
 
     <ImageButton
         android:layout_width="wrap_content"

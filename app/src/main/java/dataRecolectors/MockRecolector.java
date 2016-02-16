@@ -32,7 +32,6 @@ public class MockRecolector  {
         return instance;
     }
 
-    public ArrayList<rowData> getData() {
-        return data;
-    }
+    public ArrayList<rowData> getData() {return data;}
+
 }

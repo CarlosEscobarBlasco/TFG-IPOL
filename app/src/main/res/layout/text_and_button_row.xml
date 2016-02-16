@@ -1,7 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:descendantFocusability="blocksDescendants">
 
     <TextView
         android:id="@+id/rowTextView"
@@ -16,6 +17,6 @@
         android:layout_width="@dimen/_30sdp"
         android:layout_height="@dimen/_30sdp"
         android:scaleType="fitCenter"
-        android:background="@android:color/background_light" />
+        android:background="@android:color/background_light"/>
 
 </LinearLayout>

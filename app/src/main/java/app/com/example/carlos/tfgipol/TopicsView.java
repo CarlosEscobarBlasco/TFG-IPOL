@@ -1,5 +1,6 @@
 package app.com.example.carlos.tfgipol;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,7 +22,7 @@ public class TopicsView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_activity_topics_view);
+        setContentView(R.layout.activity_topics_view);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         loadList();
     }
@@ -35,7 +36,7 @@ public class TopicsView extends AppCompatActivity {
                 final ImageButton favButton = (ImageButton) view.findViewById(R.id.rowFavButton);
                 if (input != null) {
                     TextView rowTextView = (TextView) view.findViewById(R.id.rowTextView);
-                    rowTextView.setText(((rowData) input).getName());
+                    rowTextView.setText(((rowData) input).getText());
                     favButton.setImageResource(((rowData) input).getImage());
                     favButton.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -50,7 +51,9 @@ public class TopicsView extends AppCompatActivity {
         mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("Mensaje: ",id+"");
+                ((rowData)parent.getItemAtPosition(position)).addToHistory();
+                Intent intent = new Intent(TopicsView.this, ArticleView.class);
+                startActivity(intent);
             }
         });
     }

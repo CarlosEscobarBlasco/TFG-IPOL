@@ -1,9 +1,11 @@
 package app.com.example.carlos.tfgipol;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -33,7 +35,7 @@ public class FavsView extends Activity {
                 final ImageButton favButton = (ImageButton) view.findViewById(R.id.rowFavButton);
                 if (input != null) {
                     TextView rowTextView = (TextView) view.findViewById(R.id.rowTextView);
-                    rowTextView.setText(((rowData) input).getName());
+                    rowTextView.setText(((rowData) input).getText());
                     favButton.setImageResource(((rowData) input).getImage());
                     favButton.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -43,6 +45,14 @@ public class FavsView extends Activity {
                         }
                     });
                 }
+            }
+        });
+        mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ((rowData) parent.getItemAtPosition(position)).addToHistory();
+                Intent intent = new Intent(FavsView.this, ArticleView.class);
+                startActivity(intent);
             }
         });
     }

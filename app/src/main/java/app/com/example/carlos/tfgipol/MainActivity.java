@@ -1,11 +1,14 @@
 package app.com.example.carlos.tfgipol;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+
+import model.History;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         activateButtons();
+        setContextToWrittersClasses();
     }
 
     private void activateButtons() {
@@ -55,5 +59,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void setContextToWrittersClasses() {
+        History.getInstance().setContext(getApplicationContext());
     }
 }
