@@ -34,4 +34,11 @@ public class MockRecolector  {
 
     public ArrayList<RowData> getData() {return data;}
 
+    public RowData getObjectByName(String name){
+        for (RowData object:data) {
+            if (object.getText().equals(name))return object;
+        }
+        return null;
+    }
+
 }

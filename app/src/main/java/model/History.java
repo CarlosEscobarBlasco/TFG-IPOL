@@ -11,6 +11,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
+import dataRecolectors.MockRecolector;
+
 /**
  * Created by Carlos on 15/02/2016.
  */
@@ -20,8 +22,7 @@ public class History {
     private ArrayList<RowData> history;
     private Context context = null;
     private static final int HISTORY_SIZE = 5;
-    private static final String ROW_DATA_SEPARATOR = ",";
-    private static final String ITEMS_IN_ROW_DATA_SEPARATOR = "%";
+    private static final String ITEM_SEPARATOR = ",";
 
     protected History() {
         this.history = new ArrayList<>();
@@ -36,10 +37,18 @@ public class History {
         if (history.contains(item))return;
         if(history.size()>=HISTORY_SIZE) history.remove(0);
         history.add(item);
-        saveHistory(item);
+        storeHistory();
+    }
+    public ArrayList<RowData> getHistory(){
+        return history;
     }
 
-    private void saveHistory(RowData item) {
+    public void startHistoryList(Context context){
+        this.context=context;
+        if (history.size()==0)loadHistory();
+    }
+
+    private void storeHistory() {
         BufferedWriter bufferedWriter = null;
         try {
             FileOutputStream fileOutputStream = context.openFileOutput("historyData",Context.MODE_PRIVATE);
@@ -57,14 +66,6 @@ public class History {
         }
     }
 
-    private String transformHistoryToString() {
-        String result="";
-        for (RowData item : history) {
-            result += item.getText()+ITEMS_IN_ROW_DATA_SEPARATOR+item.getImage()+ROW_DATA_SEPARATOR;
-        }
-        return result;
-    }
-
     private void loadHistory(){
         BufferedReader bufferedReader = null;
         String result="";
@@ -74,7 +75,7 @@ public class History {
             bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
             String line;
             while ((line=bufferedReader.readLine())!=null) result+=(line);
-            history = transformStringToHistory(result);
+            addStringToHistory(result);
         } catch (IOException ignored){}
         finally {
             try {
@@ -84,20 +85,21 @@ public class History {
         }
     }
 
-    private ArrayList<RowData> transformStringToHistory(String input) {
-        ArrayList<RowData> result = new ArrayList<>();
-        if (input.length()==0)return result;
-        for (String data:input.split(ROW_DATA_SEPARATOR)){
-            if(data.length()>0)result.add(new RowData(data.split(ITEMS_IN_ROW_DATA_SEPARATOR)[0],Integer.parseInt(data.split("%")[1])));
+    private void addStringToHistory(String input) {
+        if (input.length()==0)return;
+        for (String data:input.split(ITEM_SEPARATOR)){
+            if(data.length()>0)MockRecolector.getInstance().getObjectByName(data).addToHistory();
+        }
+    }
+
+    private String transformHistoryToString() {
+        String result="";
+        for (RowData item : history) {
+            result += item.getText()+ITEM_SEPARATOR;
         }
         return result;
     }
 
-    public ArrayList<RowData> getHistory(){
-        if (history.size()==0)loadHistory();
-        return history;
-    }
 
-    public void setContext(Context context){this.context=context;}
 
 }
