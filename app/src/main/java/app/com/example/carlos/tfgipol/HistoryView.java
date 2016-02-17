@@ -11,9 +11,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import adapters.ListAdapter;
-import dataRecolectors.MockRecolector;
 import model.History;
-import model.rowData;
+import model.RowData;
 
 public class HistoryView extends AppCompatActivity {
 
@@ -31,13 +30,13 @@ public class HistoryView extends AppCompatActivity {
                 final ImageButton favButton = (ImageButton) view.findViewById(R.id.rowFavButton);
                 if (input != null) {
                     TextView rowTextView = (TextView) view.findViewById(R.id.rowTextView);
-                    rowTextView.setText(((rowData) input).getText());
-                    favButton.setImageResource(((rowData) input).getImage());
+                    rowTextView.setText(((RowData) input).getText());
+                    favButton.setImageResource(((RowData) input).getImage());
                     favButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            ((rowData) input).addToFavourites();
-                            favButton.setImageResource(((rowData) input).getImage());
+                            ((RowData) input).addToFavourites();
+                            favButton.setImageResource(((RowData) input).getImage());
                         }
                     });
                 }
@@ -46,7 +45,7 @@ public class HistoryView extends AppCompatActivity {
         mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ((rowData) parent.getItemAtPosition(position)).addToHistory();
+                ((RowData) parent.getItemAtPosition(position)).addToHistory();
                 Intent intent = new Intent(HistoryView.this, ArticleView.class);
                 startActivity(intent);
             }

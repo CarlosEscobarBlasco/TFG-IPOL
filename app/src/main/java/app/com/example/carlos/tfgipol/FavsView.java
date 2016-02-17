@@ -13,7 +13,7 @@ import android.widget.TextView;
 import adapters.ListAdapter;
 
 import model.Favourites;
-import model.rowData;
+import model.RowData;
 
 public class FavsView extends Activity {
 
@@ -35,12 +35,12 @@ public class FavsView extends Activity {
                 final ImageButton favButton = (ImageButton) view.findViewById(R.id.rowFavButton);
                 if (input != null) {
                     TextView rowTextView = (TextView) view.findViewById(R.id.rowTextView);
-                    rowTextView.setText(((rowData) input).getText());
-                    favButton.setImageResource(((rowData) input).getImage());
+                    rowTextView.setText(((RowData) input).getText());
+                    favButton.setImageResource(((RowData) input).getImage());
                     favButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            ((rowData) input).removeFromFavourites();
+                            ((RowData) input).removeFromFavourites();
                             onCreate(savedInstanceState);
                         }
                     });
@@ -50,7 +50,7 @@ public class FavsView extends Activity {
         mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ((rowData) parent.getItemAtPosition(position)).addToHistory();
+                ((RowData) parent.getItemAtPosition(position)).addToHistory();
                 Intent intent = new Intent(FavsView.this, ArticleView.class);
                 startActivity(intent);
             }

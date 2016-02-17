@@ -2,21 +2,23 @@
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:descendantFocusability="blocksDescendants">
+    android:descendantFocusability="blocksDescendants"
+    android:weightSum="1">
 
     <TextView
         android:id="@+id/rowTextView"
-        android:layout_width="@dimen/_250sdp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:textSize="16sp"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/black"
+        android:layout_weight="1.00" />
 
     <ImageButton
         android:id="@+id/rowFavButton"
-        android:layout_width="@dimen/_30sdp"
-        android:layout_height="@dimen/_30sdp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:scaleType="fitCenter"
-        android:background="@android:color/background_light"/>
+        android:background="@android:color/background_light" />
 
 </LinearLayout>

@@ -5,13 +5,18 @@ import app.com.example.carlos.tfgipol.R;
 /**
  * Created by Carlos on 15/02/2016.
  */
-public class rowData {
+public class RowData {
     private String text;
     private int image;
 
-    public rowData(String name) {
+    public RowData(String name) {
         this.text = name;
         this.image= R.drawable.empty_star;
+    }
+
+    public RowData(String name, int image){
+        this.text = name;
+        this.image= image;
     }
 
     public int getImage() {

@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class Favourites {
     private static Favourites instance = null;
-    private ArrayList<rowData> favourites;
+    private ArrayList<RowData> favourites;
 
     protected Favourites() {
         this.favourites = new ArrayList<>();
@@ -18,7 +18,7 @@ public class Favourites {
         return instance;
     }
 
-    public boolean addFavourite(rowData item){
+    public boolean addFavourite(RowData item){
         if (favourites.contains(item)){
             favourites.remove(item);
             return false;
@@ -28,11 +28,11 @@ public class Favourites {
         }
     }
 
-    public void removeFavourite(rowData item){
+    public void removeFavourite(RowData item){
         favourites.remove(item);
     }
 
-    public ArrayList<rowData> getFavourites(){
+    public ArrayList<RowData> getFavourites(){
         return favourites;
     }
 }

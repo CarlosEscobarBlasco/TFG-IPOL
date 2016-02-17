@@ -28,6 +28,7 @@
         android:layout_toStartOf="@+id/title"
         android:contentDescription="@string/ipolIcon"
         android:layout_alignBottom="@+id/title" />
+
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -66,7 +67,9 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/list">
+            android:id="@+id/list"
+            android:dividerHeight="2dp"
+            android:divider="@android:color/darker_gray">
 
         </ListView>
 

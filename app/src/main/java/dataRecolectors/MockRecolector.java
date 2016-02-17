@@ -2,7 +2,7 @@ package dataRecolectors;
 
 import java.util.ArrayList;
 
-import model.rowData;
+import model.RowData;
 
 /**
  * Created by Carlos on 13/02/2016.
@@ -10,21 +10,21 @@ import model.rowData;
 public class MockRecolector  {
 
     private static MockRecolector instance;
-    private ArrayList<rowData> data = new ArrayList<>();
+    private ArrayList<RowData> data = new ArrayList<>();
 
     protected MockRecolector (){
-        data.add(new rowData("Lorem ipsum"));
-        data.add(new rowData("dolor sit amet"));
-        data.add(new rowData("consectetur adipiscing elit"));
-        data.add(new rowData("sed do eiusmod"));
-        data.add(new rowData("tempor incididunt"));
-        data.add(new rowData("ut labore"));
-        data.add(new rowData("et dolore"));
-        data.add(new rowData("magna aliqua"));
-        data.add(new rowData("Ut enim"));
-        data.add(new rowData("ad minim"));
-        data.add(new rowData("veniam quis"));
-        data.add(new rowData("nostrud exercitation"));
+        data.add(new RowData("Lorem ipsum"));
+        data.add(new RowData("dolor sit amet"));
+        data.add(new RowData("consectetur adipiscing elit"));
+        data.add(new RowData("sed do eiusmod"));
+        data.add(new RowData("tempor incididunt"));
+        data.add(new RowData("ut labore"));
+        data.add(new RowData("et dolore"));
+        data.add(new RowData("magna aliqua"));
+        data.add(new RowData("Ut enim"));
+        data.add(new RowData("ad minim"));
+        data.add(new RowData("veniam quis"));
+        data.add(new RowData("nostrud exercitation"));
     }
 
     public static MockRecolector getInstance(){
@@ -32,6 +32,6 @@ public class MockRecolector  {
         return instance;
     }
 
-    public ArrayList<rowData> getData() {return data;}
+    public ArrayList<RowData> getData() {return data;}
 
 }
