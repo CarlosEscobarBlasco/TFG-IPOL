@@ -14,11 +14,6 @@ public class RowData {
         this.image= R.drawable.empty_star;
     }
 
-    public RowData(String name, int image){
-        this.text = name;
-        this.image= image;
-    }
-
     public int getImage() {
         return image;
     }

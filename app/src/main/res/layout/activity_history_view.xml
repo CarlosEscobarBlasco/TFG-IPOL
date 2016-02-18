@@ -31,7 +31,7 @@
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/searchText"
+        android:id="@+id/searchFilter"
         android:theme="@style/MyEditTextTheme"
         android:layout_below="@+id/title"
         android:layout_alignParentStart="true"
@@ -47,13 +47,13 @@
         android:id="@+id/searchButton"
         android:contentDescription="@string/imgDescription"
         android:src="@android:drawable/ic_menu_search"
-        android:layout_alignBottom="@+id/searchText"
+        android:layout_alignBottom="@+id/searchFilter"
         android:layout_alignParentEnd="true" />
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@+id/searchText"
+        android:layout_below="@+id/searchFilter"
 
         android:orientation="vertical">
         <TextView
