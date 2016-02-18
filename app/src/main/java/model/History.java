@@ -21,7 +21,7 @@ public class History {
     private static History instance = null;
     private ArrayList<RowData> history;
     private Context context = null;
-    private static final int HISTORY_SIZE = 5;
+    private static final int HISTORY_SIZE = 10;
     private static final String ITEM_SEPARATOR = ",";
 
     protected History() {

@@ -64,15 +64,12 @@ public class Favourites {
             FileOutputStream fileOutputStream = context.openFileOutput("favouritesData", Context.MODE_PRIVATE);
             bufferedWriter = new BufferedWriter(new OutputStreamWriter(fileOutputStream));
             bufferedWriter.write(transformFavouritesToString());
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ignored) {
         }finally {
             try {
                 assert bufferedWriter != null;
                 bufferedWriter.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            } catch (IOException ignored) {}
         }
     }
 
