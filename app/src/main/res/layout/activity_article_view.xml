@@ -18,7 +18,9 @@
         android:textColor="@android:color/secondary_text_light"
         android:elegantTextHeight="true"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="goToMenu"
+        android:clickable="true"/>
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,7 +29,9 @@
         android:layout_alignTop="@+id/title"
         android:layout_toStartOf="@+id/title"
         android:contentDescription="@string/ipolIcon"
-        android:layout_alignBottom="@+id/title" />
+        android:layout_alignBottom="@+id/title"
+        android:onClick="goToMenu"
+        android:clickable="true"/>
 
     <TextView
         android:layout_width="wrap_content"

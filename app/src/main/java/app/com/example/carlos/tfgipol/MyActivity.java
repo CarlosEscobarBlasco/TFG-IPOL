@@ -1,5 +1,6 @@
 package app.com.example.carlos.tfgipol;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -36,17 +37,19 @@ public abstract class MyActivity extends AppCompatActivity {
         final EditText searchBar = (EditText) findViewById(R.id.searchFilter);
         searchBar.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 list = getSubListByName(searchBar.getText().toString());
                 loadList();
-                list=fullList;
+                list = fullList;
             }
 
             @Override
-            public void afterTextChanged(Editable s) {}
+            public void afterTextChanged(Editable s) {
+            }
         });
     }
 
@@ -84,6 +87,12 @@ public abstract class MyActivity extends AppCompatActivity {
             if(item.getText().toLowerCase().contains(name.toLowerCase()))result.add(item);
         }
         return result;
+    }
+
+    public void goToMenu(View v){
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 
 
