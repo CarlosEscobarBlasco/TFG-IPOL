@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity"
     android:background="@android:color/background_light">
 
 
@@ -27,40 +31,49 @@
         android:layout_alignTop="@+id/title"
         android:layout_toStartOf="@+id/title"
         android:contentDescription="@string/ipolIcon"
-        android:layout_above="@+id/relativeLayout" />
+        android:layout_alignBottom="@+id/title" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Last visited"
+        android:textSize="@dimen/_20sdp"
+        android:id="@+id/textView2"
+        android:textColor="@android:color/black"
+        android:layout_below="@+id/title"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/_25sdp"/>
 
-
+    <org.lucasr.twowayview.TwoWayView
+        android:id="@+id/lvItems"
+        style="@style/TwoWayView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_100sdp"
+        android:drawSelectorOnTop="false"
+        tools:context=".MainActivity"
+        android:layout_below="@+id/textView2" />
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/relativeLayout"
-        android:gravity="center"
         android:orientation="vertical"
-        android:layout_below="@+id/title"
-        android:layout_alignParentStart="true">
+        android:layout_below="@+id/lvItems"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="@dimen/_10sdp">
 
         <Button
             android:layout_width="fill_parent"
-            android:layout_height="@dimen/_110sdp"
+            android:layout_height="@dimen/_120sdp"
             android:text="@string/topics"
             android:id="@+id/topicButton"
             android:drawableTop="@android:drawable/sym_action_chat" />
 
         <Button
             android:layout_width="fill_parent"
-            android:layout_height="@dimen/_110sdp"
+            android:layout_height="@dimen/_120sdp"
             android:text="@string/favs"
             android:id="@+id/favsButton"
             android:drawableTop="@android:drawable/star_big_off"
-            android:paddingTop="@dimen/_20sdp" />
-
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="@dimen/_110sdp"
-            android:text="@string/hist"
-            android:id="@+id/histButton"
-            android:drawableTop="@android:drawable/ic_menu_view"
             android:paddingTop="@dimen/_20sdp" />
 
     </LinearLayout>

@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 import dataRecolectors.MockRecolector;
 
@@ -21,7 +23,7 @@ public class History {
     private static History instance = null;
     private ArrayList<RowData> history;
     private Context context = null;
-    private static final int HISTORY_SIZE = 10;
+    private static final int HISTORY_SIZE = 4;
     private static final String ITEM_SEPARATOR = ",";
 
     protected History() {
@@ -34,9 +36,9 @@ public class History {
     }
 
     public void addToHistory(RowData item){
-        if (history.contains(item))return;
-        if(history.size()>=HISTORY_SIZE) history.remove(0);
-        history.add(item);
+        if (history.contains(item))history.remove(item);
+        if(history.size()>=HISTORY_SIZE) history.remove(history.size()-1);
+        history.add(0,item);
         storeHistory();
     }
     public ArrayList<RowData> getHistory(){
@@ -99,7 +101,5 @@ public class History {
         }
         return result;
     }
-
-
 
 }

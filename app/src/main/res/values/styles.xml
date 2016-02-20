@@ -14,4 +14,8 @@
         <!-- colorControlActivated & colorControlHighlight use the colorAccent color by default -->
     </style>
 
+    <style name="TwoWayView">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
 </resources>
