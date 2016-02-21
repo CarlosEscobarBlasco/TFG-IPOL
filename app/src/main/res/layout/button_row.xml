@@ -5,4 +5,5 @@
     android:text=""
     android:textAlignment="center"
     android:textAppearance="?android:attr/textAppearanceListItemSmall"
-    android:minWidth="@dimen/_260sdp"/>
+    android:minWidth="@dimen/_260sdp"
+    android:maxWidth="@dimen/_260sdp"/>

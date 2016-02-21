@@ -1,6 +1,7 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@android:id/text1"
+    android:id="@+id/simple_row_text"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:textAppearance="?android:attr/textAppearanceListItemSmall"
-    android:gravity="center_vertical" />
+    android:gravity="center_vertical"
+    android:textColor="@android:color/black"/>

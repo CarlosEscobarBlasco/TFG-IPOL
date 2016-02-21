@@ -5,11 +5,11 @@ import app.com.example.carlos.tfgipol.R;
 /**
  * Created by Carlos on 15/02/2016.
  */
-public class RowData {
+public class SubTopicData {
     private String text;
     private int image;
 
-    public RowData(String name) {
+    public SubTopicData(String name) {
         this.text = name;
         this.image= R.drawable.empty_star;
     }

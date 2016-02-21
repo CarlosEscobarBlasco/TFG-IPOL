@@ -10,8 +10,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 
 import dataRecolectors.MockRecolector;
 
@@ -21,7 +19,7 @@ import dataRecolectors.MockRecolector;
 public class History {
 
     private static History instance = null;
-    private ArrayList<RowData> history;
+    private ArrayList<SubTopicData> history;
     private Context context = null;
     private static final int HISTORY_SIZE = 4;
     private static final String ITEM_SEPARATOR = ",";
@@ -35,13 +33,13 @@ public class History {
         return instance;
     }
 
-    public void addToHistory(RowData item){
+    public void addToHistory(SubTopicData item){
         if (history.contains(item))history.remove(item);
         if(history.size()>=HISTORY_SIZE) history.remove(history.size()-1);
         history.add(0,item);
         storeHistory();
     }
-    public ArrayList<RowData> getHistory(){
+    public ArrayList<SubTopicData> getHistory(){
         return history;
     }
 
@@ -90,13 +88,13 @@ public class History {
     private void addStringToHistory(String input) {
         if (input.length()==0)return;
         for (String data:input.split(ITEM_SEPARATOR)){
-            if(data.length()>0)MockRecolector.getInstance().getObjectByName(data).addToHistory();
+            if(data.length()>0)MockRecolector.getInstance().getSubDataFromName(data).addToHistory();
         }
     }
 
     private String transformHistoryToString() {
         String result="";
-        for (RowData item : history) {
+        for (SubTopicData item : history) {
             result += item.getText()+ITEM_SEPARATOR;
         }
         return result;

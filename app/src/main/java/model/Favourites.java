@@ -18,7 +18,7 @@ import dataRecolectors.MockRecolector;
  */
 public class Favourites {
     private static Favourites instance = null;
-    private ArrayList<RowData> favourites;
+    private ArrayList<SubTopicData> favourites;
     private Context context;
     private static final String ITEM_SEPARATOR = ",";
 
@@ -31,7 +31,7 @@ public class Favourites {
         return instance;
     }
 
-    public boolean addFavourite(RowData item){
+    public boolean addFavourite(SubTopicData item){
         if (favourites.contains(item)){
             favourites.remove(item);
             storeFavourites();
@@ -43,12 +43,12 @@ public class Favourites {
         }
     }
 
-    public void removeFavourite(RowData item){
+    public void removeFavourite(SubTopicData item){
         favourites.remove(item);
         storeFavourites();
     }
 
-    public ArrayList<RowData> getFavourites(){
+    public ArrayList<SubTopicData> getFavourites(){
 
         return favourites;
     }
@@ -95,13 +95,13 @@ public class Favourites {
     private void addStringToFavourites(String input) {
         if (input.length()==0)return;
         for (String data:input.split(ITEM_SEPARATOR)){
-            if(data.length()>0)MockRecolector.getInstance().getObjectByName(data).addToFavourites();
+            if(data.length()>0)MockRecolector.getInstance().getSubDataFromName(data).addToFavourites();
         }
     }
 
     private String transformFavouritesToString() {
         String result="";
-        for (RowData item : favourites) {
+        for (SubTopicData item : favourites) {
             result += item.getText()+ITEM_SEPARATOR;
         }
         return result;

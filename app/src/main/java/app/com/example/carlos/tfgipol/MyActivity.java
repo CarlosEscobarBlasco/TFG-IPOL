@@ -6,15 +6,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import java.util.ArrayList;
 import adapters.ListAdapter;
-import model.RowData;
+import model.SubTopicData;
+import model.TopicData;
 
 /**
  * Created by Carlos on 18/02/2016.
@@ -22,15 +23,21 @@ import model.RowData;
 public abstract class MyActivity extends AppCompatActivity {
 
     private ListView mainListView;
-    private ArrayList<RowData> fullList = setList();
-    private ArrayList<RowData> list = fullList;
+    private ArrayList<SubTopicData> fullList = setList();
+    private ArrayList<SubTopicData> list = fullList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(setThisContentView());
+        setContentView(R.layout.activity_list_view);
         loadList();
         loadSearchFilter();
+        editTitle();
+    }
+
+    private void editTitle() {
+        TextView text = (TextView) findViewById(R.id.listTitle);
+        text.setText(getText());
     }
 
     private void loadSearchFilter() {
@@ -61,12 +68,12 @@ public abstract class MyActivity extends AppCompatActivity {
                 final ImageButton favButton = (ImageButton) view.findViewById(R.id.rowFavButton);
                 if (input != null) {
                     TextView rowTextView = (TextView) view.findViewById(R.id.rowTextView);
-                    rowTextView.setText(((RowData) input).getText());
-                    favButton.setImageResource(((RowData) input).getImage());
+                    rowTextView.setText(((SubTopicData) input).getText());
+                    favButton.setImageResource(((SubTopicData) input).getImage());
                     favButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            favouriteButtonListenner(input,favButton);
+                            favouriteButtonListener(input, favButton);
                         }
                     });
                 }
@@ -75,15 +82,15 @@ public abstract class MyActivity extends AppCompatActivity {
         mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                itemClickListenner(parent, view, position, id);
+                itemClickListener(parent, view, position, id);
             }
         });
     }
 
-    private ArrayList<RowData> getSubListByName(String name){
+    private ArrayList<SubTopicData> getSubListByName(String name){
         if (name.length()==0)return list;
-        ArrayList<RowData> result = new ArrayList<>();
-        for (RowData item:list){
+        ArrayList<SubTopicData> result = new ArrayList<>();
+        for (SubTopicData item:list){
             if(item.getText().toLowerCase().contains(name.toLowerCase()))result.add(item);
         }
         return result;
@@ -96,11 +103,11 @@ public abstract class MyActivity extends AppCompatActivity {
     }
 
 
-    public abstract void itemClickListenner(AdapterView<?> parent, View view, int position, long id);
+    public abstract void itemClickListener(AdapterView<?> parent, View view, int position, long id);
 
-    public abstract void favouriteButtonListenner(Object input, ImageButton favButton);
+    public abstract void favouriteButtonListener(Object input, ImageButton favButton);
 
-    public abstract int setThisContentView();
+    public abstract String getText();
 
-    protected abstract ArrayList<RowData> setList();
+    protected abstract ArrayList<SubTopicData> setList();
 }

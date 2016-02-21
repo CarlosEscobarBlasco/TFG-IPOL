@@ -8,30 +8,28 @@ import android.widget.ImageButton;
 import java.util.ArrayList;
 
 import model.Favourites;
-import model.RowData;
+import model.SubTopicData;
 
 public class FavsView extends MyActivity {
 
     @Override
-    public void itemClickListenner(AdapterView<?> parent, View view, int position, long id) {
-        ((RowData) parent.getItemAtPosition(position)).addToHistory();
+    public void itemClickListener(AdapterView<?> parent, View view, int position, long id) {
+        ((SubTopicData) parent.getItemAtPosition(position)).addToHistory();
         Intent intent = new Intent(FavsView.this, ArticleView.class);
         startActivity(intent);
     }
 
     @Override
-    public void favouriteButtonListenner(Object input, ImageButton favButton) {
-        ((RowData) input).removeFromFavourites();
+    public void favouriteButtonListener(Object input, ImageButton favButton) {
+        ((SubTopicData) input).removeFromFavourites();
         loadList();
     }
 
     @Override
-    public int setThisContentView() {
-        return R.layout.activity_favs_view;
-    }
+    public String getText() { return "Favourites"; }
 
     @Override
-    protected ArrayList<RowData> setList() {
+    protected ArrayList<SubTopicData> setList() {
         return Favourites.getInstance().getFavourites();
     }
 
