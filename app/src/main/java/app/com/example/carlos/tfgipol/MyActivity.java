@@ -15,7 +15,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import adapters.ListAdapter;
 import model.SubTopicData;
-import model.TopicData;
 
 /**
  * Created by Carlos on 18/02/2016.
@@ -33,12 +32,21 @@ public abstract class MyActivity extends AppCompatActivity {
         loadList();
         loadSearchFilter();
         editTitle();
+        editSubTitle();
     }
 
     private void editTitle() {
-        TextView text = (TextView) findViewById(R.id.listTitle);
-        text.setText(getText());
+        TextView title = (TextView) findViewById(R.id.listTitle);
+        title.setText(setListTitle());
     }
+
+    private void editSubTitle(){
+        TextView subTitle = (TextView) findViewById(R.id.listSubTitle);
+        String text = setListSubTitle().length() > 20 ? setListSubTitle().substring(0, 17)+"...": setListSubTitle();
+
+        subTitle.setText(text);
+    }
+
 
     private void loadSearchFilter() {
         final EditText searchBar = (EditText) findViewById(R.id.searchFilter);
@@ -107,7 +115,12 @@ public abstract class MyActivity extends AppCompatActivity {
 
     public abstract void favouriteButtonListener(Object input, ImageButton favButton);
 
-    public abstract String getText();
+    public abstract String setListTitle();
+
+    protected abstract String setListSubTitle();
 
     protected abstract ArrayList<SubTopicData> setList();
+
+    public abstract void goToTopic(View v);
+
 }

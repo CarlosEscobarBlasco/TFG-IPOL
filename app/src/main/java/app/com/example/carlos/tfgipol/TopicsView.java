@@ -8,7 +8,6 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -16,7 +15,6 @@ import java.util.ArrayList;
 
 import adapters.ListAdapter;
 import dataRecolectors.MockRecolector;
-import model.SubTopicData;
 import model.TopicData;
 
 public class TopicsView extends AppCompatActivity {
@@ -74,7 +72,7 @@ public class TopicsView extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //((SubTopicData)parent.getItemAtPosition(position)).addToHistory();
-                MockRecolector.getInstance().topicSelected(((TopicData)parent.getItemAtPosition(position)));
+                MockRecolector.getInstance().setTopicSelected(((TopicData) parent.getItemAtPosition(position)));
                 Intent intent = new Intent(TopicsView.this, InsideTopicView.class);
                 startActivity(intent);
             }
@@ -94,6 +92,10 @@ public class TopicsView extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+    }
+
+    public void goToTopic(View v) {
+        //Do Nothing
     }
 
 }

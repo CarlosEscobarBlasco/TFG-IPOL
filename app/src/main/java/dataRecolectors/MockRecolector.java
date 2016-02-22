@@ -15,32 +15,44 @@ public class MockRecolector  {
     private TopicData itemSelected;
 
     protected MockRecolector (){
-        ArrayList<SubTopicData> array3D = new ArrayList<>();
-        array3D.add(new SubTopicData("An Implementation and Parallelization of the Scale Space Meshing Algorithm"));
-        array3D.add(new SubTopicData("An Analysis and Implementation of a Parallel Ball Pivoting Algorithm"));
-        array3D.add(new SubTopicData("Farman Institute 3D Point Sets - High Precision 3D Data Sets"));
-        data.add(new TopicData("3D",array3D));
 
-        ArrayList<SubTopicData> Blur = new ArrayList<>();
-        Blur.add(new SubTopicData("Computing an Exact Gaussian Scale-Space"));
-        Blur.add(new SubTopicData("A Survey of Gaussian Convolution Algorithms"));
-        Blur.add(new SubTopicData("Total Variation Deconvolution using Split Bregman"));
-        data.add(new TopicData("Blur",Blur));
+        createTopic("3D", "An Implementation and Parallelization of the Scale Space Meshing Algorithm",
+                "An Analysis and Implementation of a Parallel Ball Pivoting Algorithm",
+                "Farman Institute 3D Point Sets - High Precision 3D Data Sets");
 
-        ArrayList<SubTopicData> calibration = new ArrayList<>();
-        calibration.add(new SubTopicData("Automatic Lens Distortion Correction Using One-Parameter Division Models"));
-        calibration.add(new SubTopicData("Recovering the Subpixel PSF from Two Photographs at Different Distances"));
-        calibration.add(new SubTopicData("Non-parametric Sub-pixel Local Point Spread Function Estimation"));
-        calibration.add(new SubTopicData("Algebraic Lens Distortion Model Estimation"));
-        calibration.add(new SubTopicData("An Iterative Optimization Algorithm for Lens Distortion Correction Using Two-Parameter Models"));
-        data.add(new TopicData("Calibration",calibration));
+        createTopic("Blur", "Computing an Exact Gaussian Scale-Space",
+                "A Survey of Gaussian Convolution Algorithms",
+                "Total Variation Deconvolution using Split Bregman");
 
-        ArrayList<SubTopicData> colorContrast = new ArrayList<>();
-        colorContrast.add(new SubTopicData("An Algorithmic Analysis of Variational Models for Perceptual Local Contrast Enhancement"));
-        colorContrast.add(new SubTopicData("Multiscale Retinex"));
-        colorContrast.add(new SubTopicData("Screened Poisson Equation for Image Contrast Enhancement"));
-        data.add(new TopicData("Color and Contrast",colorContrast));
+        createTopic("Calibration", "Automatic Lens Distortion Correction Using One-Parameter Division Models",
+                "Recovering the Subpixel PSF from Two Photographs at Different Distances",
+                "Non-parametric Sub-pixel Local Point Spread Function Estimation",
+                "Algebraic Lens Distortion Model Estimation",
+                "An Iterative Optimization Algorithm for Lens Distortion Correction Using Two-Parameter Models");
 
+        createTopic("Color and Contrast","An Algorithmic Analysis of Variational Models for Perceptual Local Contrast Enhancement",
+                "Multiscale Retinex",
+                "Screened Poisson Equation for Image Contrast Enhancement",
+                "Selective Contrast Adjustment by Poisson Equation",
+                "Automatic Color Enhancement (ACE) and its Fast Implementation",
+                "Color and Contrast Enhancement by Controlled Piecewise Affine Histogram Equalization",
+                "Simplest Color Balance",
+                "Local Color Correction",
+                "Image Color Cube Dimensional Filtering and Visualization",
+                "Retinex Poisson Equation: a Model for Color Perception",
+                "Midway Image Equalization");
+
+        createTopic("Computational Photography","The Flutter Shutter Code Calculator",
+                "Obtaining High Quality Photographs of Paintings by Image Fusion",
+                "The Flutter Shutter Camera Simulator");
+        createTopic("Demosaicking",
+                "A Demosaicking Algorithm with Adaptive Inter-Channel Correlation",
+                "Implementation of Nonlocal Pansharpening Image Fusion",
+                "Image Demosaicking with Contour Stencils",
+                "Gunturk-Altunbasak-Mersereau Alternating Projections Image Demosaicking",
+                "Zhang-Wu Directional LMMSE Image Demosaicking",
+                "Malvar-He-Cutler Linear Image Demosaicking",
+                "Self-similarity Driven Demosaicking");
     }
 
     public static MockRecolector getInstance(){
@@ -66,7 +78,17 @@ public class MockRecolector  {
         return null;
     }
 
-    public void topicSelected(TopicData item) {
+    public void setTopicSelected(TopicData item) {
         itemSelected=item;
+    }
+
+    public TopicData getTopicSelected(){return itemSelected;}
+
+    private void createTopic(String title, String... subTopics){
+        ArrayList<SubTopicData> aux = new ArrayList<>();
+        for (String description: subTopics){
+            aux.add(new SubTopicData(description));
+        }
+        data.add(new TopicData(title,aux));
     }
 }

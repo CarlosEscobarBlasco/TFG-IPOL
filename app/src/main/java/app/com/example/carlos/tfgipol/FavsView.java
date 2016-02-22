@@ -26,11 +26,21 @@ public class FavsView extends MyActivity {
     }
 
     @Override
-    public String getText() { return "Favourites"; }
+    public String setListTitle() { return "Favourites"; }
+
+    @Override
+    protected String setListSubTitle() {
+        return "";
+    }
 
     @Override
     protected ArrayList<SubTopicData> setList() {
         return Favourites.getInstance().getFavourites();
+    }
+
+    @Override
+    public void goToTopic(View v) {
+        //Do Nothing
     }
 
 }

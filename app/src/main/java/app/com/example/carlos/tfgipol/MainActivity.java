@@ -49,7 +49,9 @@ public class MainActivity extends AppCompatActivity {
                 public void input(Object input, View view) {
                     final Button button = (Button) view.findViewById(R.id.buttonRowButton);
                     if (input != null) {
-                        button.setText(((SubTopicData) input).getText());
+                        String text = ((SubTopicData) input).getText();
+                        text = text.length() > 50 ? text.substring(0,47)+"...":text;
+                        button.setText(text);
                     }
                 }
             });

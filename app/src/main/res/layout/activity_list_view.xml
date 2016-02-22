@@ -74,16 +74,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
+                android:textStyle="bold"
                 android:id="@+id/listTitle"
-                android:text="Title"
+                android:text="Title->"
+                android:clickable="true"
+                android:onClick="goToTopic"
                 android:textSize="@dimen/_20sdp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
-                android:id="@+id/listTitle3"
+                android:id="@+id/listSubTitle"
                 android:text=""
-                android:textSize="@dimen/_20sdp"
+                android:textSize="@dimen/_18sdp"
                 android:gravity="center"/>
         </LinearLayout>
 
