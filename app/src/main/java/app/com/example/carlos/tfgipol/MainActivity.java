@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import adapters.ListAdapter;
 import model.Favourites;
 import model.History;
-import model.SubTopicData;
+import model.SubTopic;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void createHorizontalViewList() {
-        ArrayList<SubTopicData> items = History.getInstance().getHistory();
+        ArrayList<SubTopic> items = History.getInstance().getHistory();
         if(items.size()>0){
             TwoWayView lvTest = (TwoWayView) findViewById(R.id.lvItems);
             lvTest.setAdapter(new ListAdapter(this,R.layout.button_row,items) {
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 public void input(Object input, View view) {
                     final Button button = (Button) view.findViewById(R.id.buttonRowButton);
                     if (input != null) {
-                        String text = ((SubTopicData) input).getText();
+                        String text = ((SubTopic) input).getSubTopicName();
                         text = text.length() > 50 ? text.substring(0,47)+"...":text;
                         button.setText(text);
                     }

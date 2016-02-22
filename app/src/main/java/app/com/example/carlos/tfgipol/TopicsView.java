@@ -14,14 +14,14 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import adapters.ListAdapter;
-import dataRecolectors.MockRecolector;
-import model.TopicData;
+import Controller.AppController;
+import model.Topic;
 
 public class TopicsView extends AppCompatActivity {
 
     private ListView mainListView;
-    private ArrayList<TopicData> fullList = MockRecolector.getInstance().getData();
-    private ArrayList<TopicData> list = fullList;
+    private ArrayList<Topic> fullList = AppController.getInstance().getData();
+    private ArrayList<Topic> list = fullList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +41,7 @@ public class TopicsView extends AppCompatActivity {
         final EditText searchBar = (EditText) findViewById(R.id.searchFilter);
         searchBar.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -52,8 +51,7 @@ public class TopicsView extends AppCompatActivity {
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
-            }
+            public void afterTextChanged(Editable s) {}
         });
     }
 
@@ -64,26 +62,25 @@ public class TopicsView extends AppCompatActivity {
             public void input(final Object input, View view) {
                 if (input != null) {
                     TextView rowTextView = (TextView) view.findViewById(R.id.simple_row_text);
-                    rowTextView.setText(((TopicData) input).getTopic());
+                    rowTextView.setText(((Topic) input).getTopicName());
                 }
             }
         });
         mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //((SubTopicData)parent.getItemAtPosition(position)).addToHistory();
-                MockRecolector.getInstance().setTopicSelected(((TopicData) parent.getItemAtPosition(position)));
+                AppController.getInstance().setTopicSelected(((Topic) parent.getItemAtPosition(position)));
                 Intent intent = new Intent(TopicsView.this, InsideTopicView.class);
                 startActivity(intent);
             }
         });
     }
 
-    private ArrayList<TopicData> getSubListByName(String name){
+    private ArrayList<Topic> getSubListByName(String name){
         if (name.length()==0)return list;
-        ArrayList<TopicData> result = new ArrayList<>();
-        for (TopicData item:list){
-            if(item.getTopic().toLowerCase().contains(name.toLowerCase()))result.add(item);
+        ArrayList<Topic> result = new ArrayList<>();
+        for (Topic item:list){
+            if(item.getTopicName().toLowerCase().contains(name.toLowerCase()))result.add(item);
         }
         return result;
     }
@@ -94,7 +91,7 @@ public class TopicsView extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void goToTopic(View v) {
+    public void goToTopicView(View v) {
         //Do Nothing
     }
 

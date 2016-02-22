@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
-import dataRecolectors.MockRecolector;
+import Controller.AppController;
 
 /**
  * Created by Carlos on 15/02/2016.
@@ -19,7 +19,7 @@ import dataRecolectors.MockRecolector;
 public class History {
 
     private static History instance = null;
-    private ArrayList<SubTopicData> history;
+    private ArrayList<SubTopic> history;
     private Context context = null;
     private static final int HISTORY_SIZE = 4;
     private static final String ITEM_SEPARATOR = ",";
@@ -33,13 +33,13 @@ public class History {
         return instance;
     }
 
-    public void addToHistory(SubTopicData item){
+    public void addToHistory(SubTopic item){
         if (history.contains(item))history.remove(item);
         if(history.size()>=HISTORY_SIZE) history.remove(history.size()-1);
         history.add(0,item);
         storeHistory();
     }
-    public ArrayList<SubTopicData> getHistory(){
+    public ArrayList<SubTopic> getHistory(){
         return history;
     }
 
@@ -88,14 +88,14 @@ public class History {
     private void addStringToHistory(String input) {
         if (input.length()==0)return;
         for (String data:input.split(ITEM_SEPARATOR)){
-            if(data.length()>0)MockRecolector.getInstance().getSubDataFromName(data).addToHistory();
+            if(data.length()>0) AppController.getInstance().getSubDataFromName(data).addToHistory();
         }
     }
 
     private String transformHistoryToString() {
         String result="";
-        for (SubTopicData item : history) {
-            result += item.getText()+ITEM_SEPARATOR;
+        for (SubTopic item : history) {
+            result += item.getSubTopicName()+ITEM_SEPARATOR;
         }
         return result;
     }

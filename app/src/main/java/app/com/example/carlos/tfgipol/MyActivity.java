@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import adapters.ListAdapter;
-import model.SubTopicData;
+import model.SubTopic;
 
 /**
  * Created by Carlos on 18/02/2016.
@@ -22,8 +22,8 @@ import model.SubTopicData;
 public abstract class MyActivity extends AppCompatActivity {
 
     private ListView mainListView;
-    private ArrayList<SubTopicData> fullList = setList();
-    private ArrayList<SubTopicData> list = fullList;
+    private ArrayList<SubTopic> fullList = setList();
+    private ArrayList<SubTopic> list = fullList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,8 +76,8 @@ public abstract class MyActivity extends AppCompatActivity {
                 final ImageButton favButton = (ImageButton) view.findViewById(R.id.rowFavButton);
                 if (input != null) {
                     TextView rowTextView = (TextView) view.findViewById(R.id.rowTextView);
-                    rowTextView.setText(((SubTopicData) input).getText());
-                    favButton.setImageResource(((SubTopicData) input).getImage());
+                    rowTextView.setText(((SubTopic) input).getSubTopicName());
+                    favButton.setImageResource(((SubTopic) input).getFavouriteStarImage());
                     favButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -95,11 +95,11 @@ public abstract class MyActivity extends AppCompatActivity {
         });
     }
 
-    private ArrayList<SubTopicData> getSubListByName(String name){
+    private ArrayList<SubTopic> getSubListByName(String name){
         if (name.length()==0)return list;
-        ArrayList<SubTopicData> result = new ArrayList<>();
-        for (SubTopicData item:list){
-            if(item.getText().toLowerCase().contains(name.toLowerCase()))result.add(item);
+        ArrayList<SubTopic> result = new ArrayList<>();
+        for (SubTopic item:list){
+            if(item.getSubTopicName().toLowerCase().contains(name.toLowerCase()))result.add(item);
         }
         return result;
     }
@@ -119,8 +119,8 @@ public abstract class MyActivity extends AppCompatActivity {
 
     protected abstract String setListSubTitle();
 
-    protected abstract ArrayList<SubTopicData> setList();
+    protected abstract ArrayList<SubTopic> setList();
 
-    public abstract void goToTopic(View v);
+    public abstract void goToTopicView(View v);
 
 }

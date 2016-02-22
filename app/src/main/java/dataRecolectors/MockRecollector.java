@@ -2,20 +2,21 @@ package dataRecolectors;
 
 import java.util.ArrayList;
 
-import model.SubTopicData;
-import model.TopicData;
+import model.SubTopic;
+import model.Topic;
 
 /**
- * Created by Carlos on 13/02/2016.
+ * Created by Carlos on 22/02/2016.
  */
-public class MockRecolector  {
+public class MockRecollector {
 
-    private static MockRecolector instance;
-    private ArrayList<TopicData> data = new ArrayList<>();
-    private TopicData itemSelected;
+    private ArrayList<Topic> data = new ArrayList<>();
 
-    protected MockRecolector (){
+    public MockRecollector() {
+        loadList();
+    }
 
+    private void loadList() {
         createTopic("3D", "An Implementation and Parallelization of the Scale Space Meshing Algorithm",
                 "An Analysis and Implementation of a Parallel Ball Pivoting Algorithm",
                 "Farman Institute 3D Point Sets - High Precision 3D Data Sets");
@@ -55,40 +56,15 @@ public class MockRecolector  {
                 "Self-similarity Driven Demosaicking");
     }
 
-    public static MockRecolector getInstance(){
-        if(instance==null)instance= new MockRecolector();
-        return instance;
-    }
-
-    public ArrayList<TopicData> getData() {return data;}
-
-    public SubTopicData getSubDataFromName(String name){
-        for (TopicData topicData:data ){
-            for (SubTopicData subTopicData: topicData.getData()){
-                if (subTopicData.getText().equals(name))return subTopicData;
-            }
-        }
-        return null;
-    }
-
-    public ArrayList<SubTopicData> getSubTopicList(){
-        for (TopicData topicData:data ){
-            if (topicData.getTopic().equals(itemSelected.getTopic()))return topicData.getData();
-        }
-        return null;
-    }
-
-    public void setTopicSelected(TopicData item) {
-        itemSelected=item;
-    }
-
-    public TopicData getTopicSelected(){return itemSelected;}
-
     private void createTopic(String title, String... subTopics){
-        ArrayList<SubTopicData> aux = new ArrayList<>();
+        ArrayList<SubTopic> aux = new ArrayList<>();
         for (String description: subTopics){
-            aux.add(new SubTopicData(description));
+            aux.add(new SubTopic(description));
         }
-        data.add(new TopicData(title,aux));
+        data.add(new Topic(title, aux));
+    }
+
+    public ArrayList<Topic> getData() {
+        return data;
     }
 }

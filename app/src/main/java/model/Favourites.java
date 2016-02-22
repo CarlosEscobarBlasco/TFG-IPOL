@@ -11,14 +11,14 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
-import dataRecolectors.MockRecolector;
+import Controller.AppController;
 
 /**
  * Created by Carlos on 13/02/2016.
  */
 public class Favourites {
     private static Favourites instance = null;
-    private ArrayList<SubTopicData> favourites;
+    private ArrayList<SubTopic> favourites;
     private Context context;
     private static final String ITEM_SEPARATOR = ",";
 
@@ -31,7 +31,7 @@ public class Favourites {
         return instance;
     }
 
-    public boolean addFavourite(SubTopicData item){
+    public boolean addFavourite(SubTopic item){
         if (favourites.contains(item)){
             favourites.remove(item);
             storeFavourites();
@@ -43,12 +43,12 @@ public class Favourites {
         }
     }
 
-    public void removeFavourite(SubTopicData item){
+    public void removeFavourite(SubTopic item){
         favourites.remove(item);
         storeFavourites();
     }
 
-    public ArrayList<SubTopicData> getFavourites(){
+    public ArrayList<SubTopic> getFavourites(){
 
         return favourites;
     }
@@ -95,14 +95,14 @@ public class Favourites {
     private void addStringToFavourites(String input) {
         if (input.length()==0)return;
         for (String data:input.split(ITEM_SEPARATOR)){
-            if(data.length()>0)MockRecolector.getInstance().getSubDataFromName(data).addToFavourites();
+            if(data.length()>0) AppController.getInstance().getSubDataFromName(data).addToFavourites();
         }
     }
 
     private String transformFavouritesToString() {
         String result="";
-        for (SubTopicData item : favourites) {
-            result += item.getText()+ITEM_SEPARATOR;
+        for (SubTopic item : favourites) {
+            result += item.getSubTopicName()+ITEM_SEPARATOR;
         }
         return result;
     }
