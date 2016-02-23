@@ -43,16 +43,25 @@ public class MainActivity extends AppCompatActivity {
     private void createHorizontalViewList() {
         ArrayList<SubTopic> items = History.getInstance().getHistory();
         if(items.size()>0){
-            TwoWayView lvTest = (TwoWayView) findViewById(R.id.lvItems);
-            lvTest.setAdapter(new ListAdapter(this,R.layout.button_row,items) {
+            TwoWayView historyList = (TwoWayView) findViewById(R.id.lvItems);
+            historyList.setAdapter(new ListAdapter(this, R.layout.button_row, items) {
                 @Override
-                public void input(Object input, View view) {
+                public void input(final Object input, View view) {
                     final Button button = (Button) view.findViewById(R.id.buttonRowButton);
                     if (input != null) {
                         String text = ((SubTopic) input).getSubTopicName();
-                        text = text.length() > 50 ? text.substring(0,47)+"...":text;
+                        text = text.length() > 50 ? text.substring(0, 47) + "..." : text;
                         button.setText(text);
                     }
+                    button.setOnClickListener(new OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (input == null) return;
+                            ((SubTopic) input).addToHistory();
+                            Intent intent = new Intent(MainActivity.this, ArticleView.class);
+                            startActivity(intent);
+                        }
+                    });
                 }
             });
         }
