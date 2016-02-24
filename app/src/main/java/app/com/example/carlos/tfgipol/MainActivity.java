@@ -12,6 +12,7 @@ import org.lucasr.twowayview.TwoWayView;
 import java.util.ArrayList;
 
 import adapters.ListAdapter;
+import dataRecolectors.HTMLRecollector;
 import model.Favourites;
 import model.History;
 import model.SubTopic;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         startLists();
         activateButtons();
+        HTMLRecollector r = new HTMLRecollector();
     }
 
     @Override
