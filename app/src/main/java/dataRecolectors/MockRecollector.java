@@ -2,15 +2,15 @@ package dataRecolectors;
 
 import java.util.ArrayList;
 
-import model.SubTopic;
-import model.Topic;
+import model.SubTopicElement;
+import model.TopicElement;
 
 /**
  * Created by Carlos on 22/02/2016.
  */
 public class MockRecollector {
 
-    private ArrayList<Topic> data = new ArrayList<>();
+    private ArrayList<TopicElement> data = new ArrayList<>();
 
     public MockRecollector() {
         loadList();
@@ -57,14 +57,14 @@ public class MockRecollector {
     }
 
     private void createTopic(String title, String... subTopics){
-        ArrayList<SubTopic> aux = new ArrayList<>();
+        ArrayList<SubTopicElement> aux = new ArrayList<>();
         for (String description: subTopics){
-            aux.add(new SubTopic(description));
+            aux.add(new SubTopicElement(description));
         }
-        data.add(new Topic(title, aux));
+        data.add(new TopicElement(title, aux));
     }
 
-    public ArrayList<Topic> getData() {
+    public ArrayList<TopicElement> getData() {
         return data;
     }
 }

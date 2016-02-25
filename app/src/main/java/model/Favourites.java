@@ -18,7 +18,7 @@ import Controller.AppController;
  */
 public class Favourites {
     private static Favourites instance = null;
-    private ArrayList<SubTopic> favourites;
+    private ArrayList<SubTopicElement> favourites;
     private Context context;
     private static final String ITEM_SEPARATOR = ",";
 
@@ -31,7 +31,7 @@ public class Favourites {
         return instance;
     }
 
-    public boolean addFavourite(SubTopic item){
+    public boolean addFavourite(SubTopicElement item){
         if (favourites.contains(item)){
             favourites.remove(item);
             storeFavourites();
@@ -43,13 +43,12 @@ public class Favourites {
         }
     }
 
-    public void removeFavourite(SubTopic item){
+    public void removeFavourite(SubTopicElement item){
         favourites.remove(item);
         storeFavourites();
     }
 
-    public ArrayList<SubTopic> getFavourites(){
-
+    public ArrayList<SubTopicElement> getFavourites(){
         return favourites;
     }
 
@@ -101,7 +100,7 @@ public class Favourites {
 
     private String transformFavouritesToString() {
         String result="";
-        for (SubTopic item : favourites) {
+        for (SubTopicElement item : favourites) {
             result += item.getSubTopicName()+ITEM_SEPARATOR;
         }
         return result;

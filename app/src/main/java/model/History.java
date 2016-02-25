@@ -19,7 +19,7 @@ import Controller.AppController;
 public class History {
 
     private static History instance = null;
-    private ArrayList<SubTopic> history;
+    private ArrayList<SubTopicElement> history;
     private Context context = null;
     private static final int HISTORY_SIZE = 4;
     private static final String ITEM_SEPARATOR = ",";
@@ -33,13 +33,13 @@ public class History {
         return instance;
     }
 
-    public void addToHistory(SubTopic item){
+    public void addToHistory(SubTopicElement item){
         if (history.contains(item))history.remove(item);
         if(history.size()>=HISTORY_SIZE) history.remove(history.size()-1);
         history.add(0,item);
         storeHistory();
     }
-    public ArrayList<SubTopic> getHistory(){
+    public ArrayList<SubTopicElement> getHistory(){
         return history;
     }
 
@@ -94,7 +94,7 @@ public class History {
 
     private String transformHistoryToString() {
         String result="";
-        for (SubTopic item : history) {
+        for (SubTopicElement item : history) {
             result += item.getSubTopicName()+ITEM_SEPARATOR;
         }
         return result;

@@ -8,20 +8,20 @@ import android.widget.ImageButton;
 import java.util.ArrayList;
 
 import model.Favourites;
-import model.SubTopic;
+import model.SubTopicElement;
 
 public class FavsView extends MyActivity {
 
     @Override
     public void itemClickListener(AdapterView<?> parent, View view, int position, long id) {
-        ((SubTopic) parent.getItemAtPosition(position)).addToHistory();
+        ((SubTopicElement) parent.getItemAtPosition(position)).addToHistory();
         Intent intent = new Intent(FavsView.this, ArticleView.class);
         startActivity(intent);
     }
 
     @Override
     public void favouriteButtonListener(Object input, ImageButton favButton) {
-        ((SubTopic) input).removeFromFavourites();
+        ((SubTopicElement) input).removeFromFavourites();
         loadList();
     }
 
@@ -34,7 +34,7 @@ public class FavsView extends MyActivity {
     }
 
     @Override
-    protected ArrayList<SubTopic> setList() {
+    protected ArrayList<SubTopicElement> setList() {
         return Favourites.getInstance().getFavourites();
     }
 

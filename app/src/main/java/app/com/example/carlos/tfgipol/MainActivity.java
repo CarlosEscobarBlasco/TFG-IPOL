@@ -12,21 +12,19 @@ import org.lucasr.twowayview.TwoWayView;
 import java.util.ArrayList;
 
 import adapters.ListAdapter;
-import dataRecolectors.HTMLRecollector;
 import model.Favourites;
 import model.History;
-import model.SubTopic;
+import model.SubTopicElement;
+import model.Topics;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button favsButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         startLists();
         activateButtons();
-        HTMLRecollector r = new HTMLRecollector();
     }
 
     @Override
@@ -36,14 +34,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void activateButtons() {
-
         activateFavsButton();
         createHorizontalViewList();
         activateTopicsButton();
     }
 
     private void createHorizontalViewList() {
-        ArrayList<SubTopic> items = History.getInstance().getHistory();
+        ArrayList<SubTopicElement> items = History.getInstance().getHistory();
         if(items.size()>0){
             TwoWayView historyList = (TwoWayView) findViewById(R.id.lvItems);
             historyList.setAdapter(new ListAdapter(this, R.layout.button_row, items) {
@@ -51,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 public void input(final Object input, View view) {
                     final Button button = (Button) view.findViewById(R.id.buttonRowButton);
                     if (input != null) {
-                        String text = ((SubTopic) input).getSubTopicName();
+                        String text = ((SubTopicElement) input).getSubTopicName();
                         text = text.length() > 50 ? text.substring(0, 47) + "..." : text;
                         button.setText(text);
                     }
@@ -59,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             if (input == null) return;
-                            ((SubTopic) input).addToHistory();
+                            ((SubTopicElement) input).addToHistory();
                             Intent intent = new Intent(MainActivity.this, ArticleView.class);
                             startActivity(intent);
                         }
@@ -70,8 +67,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void activateTopicsButton() {
-        favsButton = (Button) findViewById(R.id.topicButton);
-        favsButton.setOnClickListener(new OnClickListener() {
+        Button topicButton = (Button) findViewById(R.id.topicButton);
+        topicButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, TopicsView.class);
@@ -81,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void activateFavsButton() {
-        favsButton = (Button) findViewById(R.id.favsButton);
+        Button favsButton = (Button) findViewById(R.id.favsButton);
         favsButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startLists() {
+        Topics.getInstance().startTopicList(getApplicationContext());
         History.getInstance().startHistoryList(getApplicationContext());
         Favourites.getInstance().startFavouritesList(getApplicationContext());
     }

@@ -5,11 +5,11 @@ import app.com.example.carlos.tfgipol.R;
 /**
  * Created by Carlos on 15/02/2016.
  */
-public class SubTopic {
+public class SubTopicElement {
     private String subTopicName;
     private int favouriteStarImage;
 
-    public SubTopic(String name) {
+    public SubTopicElement(String name) {
         this.subTopicName = name;
         this.favouriteStarImage = R.drawable.empty_star;
     }

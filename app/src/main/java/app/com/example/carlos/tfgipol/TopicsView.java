@@ -15,13 +15,13 @@ import java.util.ArrayList;
 
 import adapters.ListAdapter;
 import Controller.AppController;
-import model.Topic;
+import model.TopicElement;
 
 public class TopicsView extends AppCompatActivity {
 
     private ListView mainListView;
-    private ArrayList<Topic> fullList = AppController.getInstance().getData();
-    private ArrayList<Topic> list = fullList;
+    private ArrayList<TopicElement> fullList = AppController.getInstance().getData();
+    private ArrayList<TopicElement> list = fullList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,24 +62,24 @@ public class TopicsView extends AppCompatActivity {
             public void input(final Object input, View view) {
                 if (input != null) {
                     TextView rowTextView = (TextView) view.findViewById(R.id.simple_row_text);
-                    rowTextView.setText(((Topic) input).getTopicName());
+                    rowTextView.setText(((TopicElement) input).getTopicName());
                 }
             }
         });
         mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                AppController.getInstance().setTopicSelected(((Topic) parent.getItemAtPosition(position)));
+                AppController.getInstance().setTopicSelected(((TopicElement) parent.getItemAtPosition(position)));
                 Intent intent = new Intent(TopicsView.this, InsideTopicView.class);
                 startActivity(intent);
             }
         });
     }
 
-    private ArrayList<Topic> getSubListByName(String name){
+    private ArrayList<TopicElement> getSubListByName(String name){
         if (name.length()==0)return list;
-        ArrayList<Topic> result = new ArrayList<>();
-        for (Topic item:list){
+        ArrayList<TopicElement> result = new ArrayList<>();
+        for (TopicElement item:list){
             if(item.getTopicName().toLowerCase().contains(name.toLowerCase()))result.add(item);
         }
         return result;

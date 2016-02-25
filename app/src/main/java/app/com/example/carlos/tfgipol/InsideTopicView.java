@@ -8,7 +8,7 @@ import android.widget.ImageButton;
 import java.util.ArrayList;
 
 import Controller.AppController;
-import model.SubTopic;
+import model.SubTopicElement;
 
 /**
  * Created by Carlos on 21/02/2016.
@@ -17,15 +17,15 @@ public class InsideTopicView extends MyActivity {
 
     @Override
     public void itemClickListener(AdapterView<?> parent, View view, int position, long id) {
-        ((SubTopic)parent.getItemAtPosition(position)).addToHistory();
+        ((SubTopicElement)parent.getItemAtPosition(position)).addToHistory();
         Intent intent = new Intent(this, ArticleView.class);
         startActivity(intent);
     }
 
     @Override
     public void favouriteButtonListener(Object input, ImageButton favButton) {
-        ((SubTopic) input).addToFavourites();
-        favButton.setImageResource(((SubTopic) input).getFavouriteStarImage());
+        ((SubTopicElement) input).addToFavourites();
+        favButton.setImageResource(((SubTopicElement) input).getFavouriteStarImage());
     }
 
     @Override
@@ -39,7 +39,7 @@ public class InsideTopicView extends MyActivity {
     }
 
     @Override
-    protected ArrayList<SubTopic> setList() {return AppController.getInstance().getSubTopicList();}
+    protected ArrayList<SubTopicElement> setList() {return AppController.getInstance().getSubTopicList();}
 
     @Override
     public void goToTopicView(View v) {
