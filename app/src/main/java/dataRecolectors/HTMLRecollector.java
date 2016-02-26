@@ -40,6 +40,7 @@ public class HTMLRecollector {
 
     private void processHTML() {
         htmlResponse=htmlResponse.substring(htmlResponse.indexOf("Topics"),htmlResponse.lastIndexOf("Topics"));
+
         String[]pageInLInes=htmlResponse.split("[\\r\\n]+");
         ArrayList<String>result=new ArrayList<>();
         String topic;

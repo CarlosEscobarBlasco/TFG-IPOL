@@ -3,6 +3,7 @@ package app.com.example.carlos.tfgipol;
 import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class FavsView extends MyActivity {
     }
 
     @Override
-    public void favouriteButtonListener(Object input, ImageButton favButton) {
+    public void favouriteButtonListener(Object input, Button favButton) {
         ((SubTopicElement) input).removeFromFavourites();
         loadList();
     }

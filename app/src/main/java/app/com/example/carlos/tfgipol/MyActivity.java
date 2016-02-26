@@ -7,6 +7,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -73,11 +74,11 @@ public abstract class MyActivity extends AppCompatActivity {
         mainListView.setAdapter(new ListAdapter(this, R.layout.text_and_button_row, list) {
             @Override
             public void input(final Object input, View view) {
-                final ImageButton favButton = (ImageButton) view.findViewById(R.id.rowFavButton);
+                final Button favButton = (Button) view.findViewById(R.id.rowFavButton);
                 if (input != null) {
                     TextView rowTextView = (TextView) view.findViewById(R.id.rowTextView);
                     rowTextView.setText(((SubTopicElement) input).getSubTopicName());
-                    favButton.setImageResource(((SubTopicElement) input).getFavouriteStarImage());
+                    favButton.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,((SubTopicElement) input).getFavouriteStarImage());
                     favButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -113,7 +114,7 @@ public abstract class MyActivity extends AppCompatActivity {
 
     public abstract void itemClickListener(AdapterView<?> parent, View view, int position, long id);
 
-    public abstract void favouriteButtonListener(Object input, ImageButton favButton);
+    public abstract void favouriteButtonListener(Object input, Button favButton);
 
     public abstract String setListTitle();
 
