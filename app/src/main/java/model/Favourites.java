@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
-import Controller.AppController;
+import controller.AppController;
 
 /**
  * Created by Carlos on 13/02/2016.

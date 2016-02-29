@@ -13,8 +13,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import adapters.ListAdapter;
-import Controller.AppController;
+import adapters.MyListAdapter;
+import controller.AppController;
 import model.TopicElement;
 
 public class TopicsView extends AppCompatActivity {
@@ -57,7 +57,7 @@ public class TopicsView extends AppCompatActivity {
 
     protected void loadList() {
         mainListView = (ListView) findViewById(R.id.list);
-        mainListView.setAdapter(new ListAdapter(this, R.layout.simple_row, list) {
+        mainListView.setAdapter(new MyListAdapter(this, R.layout.simple_row, list) {
             @Override
             public void input(final Object input, View view) {
                 if (input != null) {

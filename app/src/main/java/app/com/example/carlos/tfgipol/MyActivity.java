@@ -9,12 +9,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import adapters.ListAdapter;
+import adapters.MyListAdapter;
 import model.SubTopicElement;
 
 /**
@@ -71,7 +70,7 @@ public abstract class MyActivity extends AppCompatActivity {
 
     protected void loadList() {
         mainListView = (ListView) findViewById(R.id.list);
-        mainListView.setAdapter(new ListAdapter(this, R.layout.text_and_button_row, list) {
+        mainListView.setAdapter(new MyListAdapter(this, R.layout.text_and_button_row, list) {
             @Override
             public void input(final Object input, View view) {
                 final Button favButton = (Button) view.findViewById(R.id.rowFavButton);

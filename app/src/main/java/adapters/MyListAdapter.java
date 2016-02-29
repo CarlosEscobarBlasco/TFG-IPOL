@@ -7,16 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-public abstract class ListAdapter extends BaseAdapter {
+public abstract class MyListAdapter extends BaseAdapter {
 
-    private ArrayList<?> inputs;
+    private ArrayList<?> list;
     private int R_layout_IdView;
     private Context context;
 
-    public ListAdapter(Context contexto, int R_layout_IdView, ArrayList<?> entradas) {
+    public MyListAdapter(Context context, int R_layout_IdView, ArrayList<?> list) {
         super();
-        this.context = contexto;
-        this.inputs = entradas;
+        this.context = context;
+        this.list = list;
         this.R_layout_IdView = R_layout_IdView;
     }
 
@@ -26,18 +26,18 @@ public abstract class ListAdapter extends BaseAdapter {
             LayoutInflater vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = vi.inflate(R_layout_IdView, null);
         }
-        input(inputs.get(posicion), view);
+        input(list.get(posicion), view);
         return view;
     }
 
     @Override
     public int getCount() {
-        return inputs.size();
+        return list.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return inputs.get(position);
+        return list.get(position);
     }
 
     @Override
@@ -45,7 +45,7 @@ public abstract class ListAdapter extends BaseAdapter {
         return position;
     }
 
-    /** Devuelve cada una de las inputs con cada una de las vistas a la que debe de ser asociada
+    /** Devuelve cada una de las list con cada una de las vistas a la que debe de ser asociada
      * @param input La enrada que será la asociada a la view. La entrada es del tipo del paquete/handler
      * @param view View particular que contendrá los datos del paquete/handler
      */

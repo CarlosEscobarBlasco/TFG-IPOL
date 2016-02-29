@@ -1,8 +1,7 @@
-package Controller;
+package controller;
 
 import java.util.ArrayList;
 
-import dataRecolectors.HTMLRecollector;
 import model.SubTopicElement;
 import model.TopicElement;
 import model.Topics;

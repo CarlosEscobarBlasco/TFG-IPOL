@@ -4,11 +4,10 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ImageButton;
 
 import java.util.ArrayList;
 
-import Controller.AppController;
+import controller.AppController;
 import model.SubTopicElement;
 
 /**

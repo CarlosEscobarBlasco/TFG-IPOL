@@ -11,7 +11,7 @@ import org.lucasr.twowayview.TwoWayView;
 
 import java.util.ArrayList;
 
-import adapters.ListAdapter;
+import adapters.MyListAdapter;
 import model.Favourites;
 import model.History;
 import model.SubTopicElement;
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<SubTopicElement> items = History.getInstance().getHistory();
         if(items.size()>0){
             TwoWayView historyList = (TwoWayView) findViewById(R.id.lvItems);
-            historyList.setAdapter(new ListAdapter(this, R.layout.button_row, items) {
+            historyList.setAdapter(new MyListAdapter(this, R.layout.button_row, items) {
                 @Override
                 public void input(final Object input, View view) {
                     final Button button = (Button) view.findViewById(R.id.buttonRowButton);
