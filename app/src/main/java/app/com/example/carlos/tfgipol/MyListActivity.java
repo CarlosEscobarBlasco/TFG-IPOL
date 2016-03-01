@@ -19,7 +19,7 @@ import model.SubTopicElement;
 /**
  * Created by Carlos on 18/02/2016.
  */
-public abstract class MyActivity extends AppCompatActivity {
+public abstract class MyListActivity extends AppCompatActivity {
 
     private ListView mainListView;
     private ArrayList<SubTopicElement> fullList = setList();
@@ -43,7 +43,6 @@ public abstract class MyActivity extends AppCompatActivity {
     private void editSubTitle(){
         TextView subTitle = (TextView) findViewById(R.id.listSubTitle);
         String text = setListSubTitle().length() > 20 ? setListSubTitle().substring(0, 17)+"...": setListSubTitle();
-
         subTitle.setText(text);
     }
 

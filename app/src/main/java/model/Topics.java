@@ -17,13 +17,15 @@ import dataRecolectors.HTMLRecollector;
  * Created by Carlos on 25/02/2016.
  */
 public class Topics {
+    private static final String TOPIC_SEPARATOR = ";;";
+    private static final String SUB_TOPIC_SEPARATOR = ",";
     private static Topics instance = null;
-    private ArrayList<TopicElement> topics;
+    private ArrayList<TopicElement> topicList;
     private Context context;
-    private static final String ITEM_SEPARATOR = ",";
+    private TopicElement topicSelected;
 
     protected Topics() {
-        this.topics = new ArrayList<>();
+        this.topicList = new ArrayList<>();
     }
 
     public static Topics getInstance(){
@@ -33,15 +35,34 @@ public class Topics {
 
     public void startTopicList(Context context){
         this.context=context;
-        if (topics.size()==0) loadTopicsFromLocal();
+        if (topicList.size()==0) loadTopicsFromLocal();
     }
 
-    public ArrayList<TopicElement> getTopics(){
-        return topics;
+    public ArrayList<TopicElement> getTopicList(){
+        return topicList;
+    }
+
+    public void setTopicSelected(TopicElement item) {topicSelected =item;}
+
+    public TopicElement getTopicSelected(){return topicSelected;}
+
+    public ArrayList<SubTopicElement> getSubTopicListFromTopic(TopicElement topicSelected){
+        for (TopicElement topicElement :topicList ){
+            if (topicElement.getTopicName().equals(topicSelected.getTopicName()))return topicElement.getSubTopicElements();
+        }
+        return null;
+    }
+
+    public SubTopicElement getSubDataFromName(String name){
+        for (TopicElement topicElement :topicList ){
+            for (SubTopicElement subTopicElement : topicElement.getSubTopicElements()){
+                if (subTopicElement.getSubTopicName().equals(name))return subTopicElement;
+            }
+        }
+        return null;
     }
 
     private void loadTopicsFromLocal() {
-        System.out.println("load from local");
         BufferedReader bufferedReader = null;
         String result="";
         try {
@@ -61,36 +82,32 @@ public class Topics {
     }
 
     private void loadTopicsFromHTML() {
-        System.out.println("load from HTML");
-        topics = new HTMLRecollector().getData();
+        topicList = new HTMLRecollector().getData();
         storeTopicsOnLocal();
     }
 
     private void storeTopicsOnLocal() {
-        System.out.println("Storing data.........");
         BufferedWriter bufferedWriter = null;
         try {
             FileOutputStream fileOutputStream = context.openFileOutput("topicsData", Context.MODE_PRIVATE);
             bufferedWriter = new BufferedWriter(new OutputStreamWriter(fileOutputStream));
             bufferedWriter.write(transformTopicsToString());
         } catch (IOException ignored) {
-            System.out.println("Fail Storing :'(");
         }finally {
             try {
                 assert bufferedWriter != null;
                 bufferedWriter.close();
             } catch (IOException ignored) {}
         }
-        System.out.println("Data stored");
     }
 
     private String transformTopicsToString() {
         String result="";
-        for (TopicElement item : topics) {
+        for (TopicElement item : topicList) {
             for (SubTopicElement subItem:item.getSubTopicElements()){
-                result += subItem.getSubTopicName()+",";
+                result += subItem.getSubTopicName()+SUB_TOPIC_SEPARATOR;
             }
-            result += item.getTopicName()+";;";
+            result += item.getTopicName()+TOPIC_SEPARATOR;
         }
         return result;
     }
@@ -99,13 +116,13 @@ public class Topics {
         if (result.length()==0){
             loadTopicsFromHTML();
         }else{
-            for (String topic : result.split(";;")){
-                String[] subTopic = topic.split(",");
+            for (String topic : result.split(TOPIC_SEPARATOR)){
+                String[] subTopic = topic.split(SUB_TOPIC_SEPARATOR);
                 ArrayList<SubTopicElement> aux = new ArrayList<>();
                 for (int i = 0; i < subTopic.length-1; i++) {
                     aux.add(new SubTopicElement(subTopic[i]));
                 }
-                topics.add(new TopicElement(subTopic[subTopic.length-1], aux));
+                topicList.add(new TopicElement(subTopic[subTopic.length - 1], aux));
             }
         }
     }

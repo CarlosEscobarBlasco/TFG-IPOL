@@ -11,8 +11,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
-import controller.AppController;
-
 /**
  * Created by Carlos on 15/02/2016.
  */
@@ -86,9 +84,9 @@ public class History {
     }
 
     private void addStringToHistory(String input) {
-        if (input.length()==0)return;
+        if (input.length() == 0)return;
         for (String data:input.split(ITEM_SEPARATOR)){
-            if(data.length()>0) AppController.getInstance().getSubDataFromName(data).addToHistory();
+            if(data.length() > 0) Topics.getInstance().getSubDataFromName(data).addToHistory();
         }
     }
 

@@ -14,13 +14,13 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import adapters.MyListAdapter;
-import controller.AppController;
 import model.TopicElement;
+import model.Topics;
 
 public class TopicsView extends AppCompatActivity {
 
     private ListView mainListView;
-    private ArrayList<TopicElement> fullList = AppController.getInstance().getData();
+    private ArrayList<TopicElement> fullList = Topics.getInstance().getTopicList();
     private ArrayList<TopicElement> list = fullList;
 
     @Override
@@ -69,7 +69,7 @@ public class TopicsView extends AppCompatActivity {
         mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                AppController.getInstance().setTopicSelected(((TopicElement) parent.getItemAtPosition(position)));
+                Topics.getInstance().setTopicSelected(((TopicElement) parent.getItemAtPosition(position)));
                 Intent intent = new Intent(TopicsView.this, InsideTopicView.class);
                 startActivity(intent);
             }

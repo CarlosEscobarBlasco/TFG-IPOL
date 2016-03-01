@@ -11,8 +11,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
-import controller.AppController;
-
 /**
  * Created by Carlos on 13/02/2016.
  */
@@ -94,7 +92,7 @@ public class Favourites {
     private void addStringToFavourites(String input) {
         if (input.length()==0)return;
         for (String data:input.split(ITEM_SEPARATOR)){
-            if(data.length()>0) AppController.getInstance().getSubDataFromName(data).addToFavourites();
+            if(data.length()>0) Topics.getInstance().getSubDataFromName(data).addToFavourites();
         }
     }
 

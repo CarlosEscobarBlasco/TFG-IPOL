@@ -32,7 +32,6 @@ public class ArticleView extends AppCompatActivity {
     }
 
     private void loadList() {
-        boolean b =true;
         ArrayList<String> list = new ArrayList<>();
         list.add("Input 1");
         list.add("");

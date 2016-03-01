@@ -7,13 +7,13 @@ import android.widget.Button;
 
 import java.util.ArrayList;
 
-import controller.AppController;
 import model.SubTopicElement;
+import model.Topics;
 
 /**
  * Created by Carlos on 21/02/2016.
  */
-public class InsideTopicView extends MyActivity {
+public class InsideTopicView extends MyListActivity {
 
     @Override
     public void itemClickListener(AdapterView<?> parent, View view, int position, long id) {
@@ -35,11 +35,11 @@ public class InsideTopicView extends MyActivity {
 
     @Override
     protected String setListSubTitle() {
-        return AppController.getInstance().getTopicSelected().getTopicName();
+        return Topics.getInstance().getTopicSelected().getTopicName();
     }
 
     @Override
-    protected ArrayList<SubTopicElement> setList() {return AppController.getInstance().getSubTopicList();}
+    protected ArrayList<SubTopicElement> setList() {return Topics.getInstance().getSubTopicListFromTopic(Topics.getInstance().getTopicSelected());}
 
     @Override
     public void goToTopicView(View v) {

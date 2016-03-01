@@ -4,14 +4,13 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ImageButton;
 
 import java.util.ArrayList;
 
 import model.Favourites;
 import model.SubTopicElement;
 
-public class FavsView extends MyActivity {
+public class FavsView extends MyListActivity {
 
     @Override
     public void itemClickListener(AdapterView<?> parent, View view, int position, long id) {
