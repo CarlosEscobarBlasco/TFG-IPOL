@@ -1,4 +1,4 @@
-package model;
+package model.lists;
 
 import android.content.Context;
 
@@ -11,7 +11,9 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
-import dataRecolectors.HTMLRecollector;
+import dataCollector.HTMLTopicsCollector;
+import model.listElements.SubTopicElement;
+import model.listElements.TopicElement;
 
 /**
  * Created by Carlos on 25/02/2016.
@@ -82,7 +84,7 @@ public class Topics {
     }
 
     private void loadTopicsFromHTML() {
-        topicList = new HTMLRecollector().getData();
+        topicList = new HTMLTopicsCollector().getData();
         storeTopicsOnLocal();
     }
 

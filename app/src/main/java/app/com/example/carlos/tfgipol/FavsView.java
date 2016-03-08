@@ -7,15 +7,15 @@ import android.widget.Button;
 
 import java.util.ArrayList;
 
-import model.Favourites;
-import model.SubTopicElement;
+import model.lists.Favourites;
+import model.listElements.SubTopicElement;
 
 public class FavsView extends MyListActivity {
 
     @Override
     public void itemClickListener(AdapterView<?> parent, View view, int position, long id) {
         ((SubTopicElement) parent.getItemAtPosition(position)).addToHistory();
-        Intent intent = new Intent(FavsView.this, ArticleView.class);
+        Intent intent = new Intent(FavsView.this, ParametersView.class);
         startActivity(intent);
     }
 

@@ -1,4 +1,4 @@
-package model;
+package model.lists;
 
 import android.content.Context;
 
@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+
+import model.listElements.SubTopicElement;
 
 /**
  * Created by Carlos on 13/02/2016.

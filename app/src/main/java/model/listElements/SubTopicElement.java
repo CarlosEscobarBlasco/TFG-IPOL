@@ -1,6 +1,8 @@
-package model;
+package model.listElements;
 
 import app.com.example.carlos.tfgipol.R;
+import model.lists.Favourites;
+import model.lists.History;
 
 /**
  * Created by Carlos on 15/02/2016.

@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import adapters.MyListAdapter;
-import model.SubTopicElement;
+import model.listElements.SubTopicElement;
 
 /**
  * Created by Carlos on 18/02/2016.
@@ -28,7 +28,7 @@ public abstract class MyListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_view);
+        setContentView(R.layout.activity_list);
         loadList();
         loadSearchFilter();
         editTitle();

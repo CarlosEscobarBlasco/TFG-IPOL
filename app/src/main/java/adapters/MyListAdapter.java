@@ -21,12 +21,12 @@ public abstract class MyListAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int posicion, View view, ViewGroup pariente) {
+    public View getView(int position, View view, ViewGroup parent) {
         if (view == null) {
             LayoutInflater vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = vi.inflate(R_layout_IdView, null);
         }
-        input(list.get(posicion), view);
+        input(list.get(position), view);
         return view;
     }
 

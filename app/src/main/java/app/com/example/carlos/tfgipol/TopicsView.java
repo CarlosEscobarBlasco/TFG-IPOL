@@ -14,8 +14,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import adapters.MyListAdapter;
-import model.TopicElement;
-import model.Topics;
+import model.listElements.TopicElement;
+import model.lists.Topics;
 
 public class TopicsView extends AppCompatActivity {
 
@@ -26,7 +26,7 @@ public class TopicsView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_view);
+        setContentView(R.layout.activity_list);
         loadList();
         loadSearchFilter();
         editTitle();

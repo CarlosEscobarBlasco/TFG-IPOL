@@ -1,12 +1,12 @@
-package dataRecolectors;
+package dataCollector;
 
 import android.os.AsyncTask;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import model.SubTopicElement;
-import model.TopicElement;
+import model.listElements.SubTopicElement;
+import model.listElements.TopicElement;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -14,13 +14,13 @@ import okhttp3.Response;
 /**
  * Created by Carlos on 24/02/2016.
  */
-public class HTMLRecollector {
+public class HTMLTopicsCollector {
     private OkHttpClient client = new OkHttpClient();
     private ArrayList<TopicElement> data = new ArrayList<>();
     private String htmlResponse="";
     private boolean flag;
 
-    public HTMLRecollector() {
+    public HTMLTopicsCollector() {
         flag=false;
         getHTML();
     }

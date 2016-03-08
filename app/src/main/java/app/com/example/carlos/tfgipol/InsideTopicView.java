@@ -7,8 +7,8 @@ import android.widget.Button;
 
 import java.util.ArrayList;
 
-import model.SubTopicElement;
-import model.Topics;
+import model.listElements.SubTopicElement;
+import model.lists.Topics;
 
 /**
  * Created by Carlos on 21/02/2016.
@@ -18,7 +18,7 @@ public class InsideTopicView extends MyListActivity {
     @Override
     public void itemClickListener(AdapterView<?> parent, View view, int position, long id) {
         ((SubTopicElement)parent.getItemAtPosition(position)).addToHistory();
-        Intent intent = new Intent(this, ArticleView.class);
+        Intent intent = new Intent(this, ParametersView.class);
         startActivity(intent);
     }
 

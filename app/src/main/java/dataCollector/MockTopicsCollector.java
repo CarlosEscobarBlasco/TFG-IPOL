@@ -1,18 +1,18 @@
-package dataRecolectors;
+package dataCollector;
 
 import java.util.ArrayList;
 
-import model.SubTopicElement;
-import model.TopicElement;
+import model.listElements.SubTopicElement;
+import model.listElements.TopicElement;
 
 /**
  * Created by Carlos on 22/02/2016.
  */
-public class MockRecollector {
+public class MockTopicsCollector {
 
     private ArrayList<TopicElement> data = new ArrayList<>();
 
-    public MockRecollector() {
+    public MockTopicsCollector() {
         loadList();
     }
 

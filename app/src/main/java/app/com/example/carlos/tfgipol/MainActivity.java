@@ -12,10 +12,10 @@ import org.lucasr.twowayview.TwoWayView;
 import java.util.ArrayList;
 
 import adapters.MyListAdapter;
-import model.Favourites;
-import model.History;
-import model.SubTopicElement;
-import model.Topics;
+import model.lists.Favourites;
+import model.lists.History;
+import model.listElements.SubTopicElement;
+import model.lists.Topics;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                         public void onClick(View v) {
                             if (input == null) return;
                             ((SubTopicElement) input).addToHistory();
-                            Intent intent = new Intent(MainActivity.this, ArticleView.class);
+                            Intent intent = new Intent(MainActivity.this, ParametersView.class);
                             startActivity(intent);
                         }
                     });
