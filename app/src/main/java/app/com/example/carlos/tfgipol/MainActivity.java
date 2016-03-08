@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                         public void onClick(View v) {
                             if (input == null) return;
                             ((SubTopicElement) input).addToHistory();
-                            Intent intent = new Intent(MainActivity.this, ParametersView.class);
+                            Intent intent = new Intent(MainActivity.this, ArticleView.class);
                             startActivity(intent);
                         }
                     });

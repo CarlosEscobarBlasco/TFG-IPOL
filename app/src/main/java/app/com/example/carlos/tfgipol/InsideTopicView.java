@@ -18,7 +18,7 @@ public class InsideTopicView extends MyListActivity {
     @Override
     public void itemClickListener(AdapterView<?> parent, View view, int position, long id) {
         ((SubTopicElement)parent.getItemAtPosition(position)).addToHistory();
-        Intent intent = new Intent(this, ParametersView.class);
+        Intent intent = new Intent(this, ArticleView.class);
         startActivity(intent);
     }
 
