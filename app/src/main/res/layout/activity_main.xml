@@ -35,7 +35,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Last visited"
+        android:text="@string/history"
         android:textSize="@dimen/_20sdp"
         android:id="@+id/textView2"
         android:textColor="@android:color/black"
@@ -65,16 +65,15 @@
             android:layout_width="fill_parent"
             android:layout_height="@dimen/_120sdp"
             android:text="@string/topics"
-            android:id="@+id/topicButton"
-            android:drawableTop="@android:drawable/sym_action_chat" />
+            android:textSize="@dimen/_20sdp"
+            android:id="@+id/topicButton" />
 
         <Button
             android:layout_width="fill_parent"
             android:layout_height="@dimen/_120sdp"
             android:text="@string/favs"
-            android:id="@+id/favsButton"
-            android:drawableTop="@android:drawable/star_big_off"
-            android:paddingTop="@dimen/_20sdp" />
+            android:textSize="@dimen/_20sdp"
+            android:id="@+id/favsButton"/>
 
     </LinearLayout>
 

@@ -1,6 +1,8 @@
 package model;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.text.InputType;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -13,8 +15,6 @@ import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-
 import adapters.MyListAdapter;
 import app.com.example.carlos.tfgipol.R;
 
@@ -23,11 +23,9 @@ import app.com.example.carlos.tfgipol.R;
  */
 public class RowParametersBuilder {
     Context applicationContext;
-    MyListAdapter myListAdapter;
 
-    public RowParametersBuilder(Context applicationContext, MyListAdapter myListAdapter) {
+    public RowParametersBuilder(Context applicationContext) {
         this.applicationContext = applicationContext;
-        this.myListAdapter=myListAdapter;
     }
 
     public void createRow(JSONObject input, View view) {
@@ -36,7 +34,7 @@ public class RowParametersBuilder {
         try {
             if (rowTextView.getText().equals(setText(input)))return;
             rowTextView.setText(setText(input));
-            layout.addView(setInputComponent(input));
+            setInputComponent(input, layout);
         } catch (JSONException ignored) {
         }
     }
@@ -45,39 +43,58 @@ public class RowParametersBuilder {
         return input.get("label").toString();
     }
 
-    private View setInputComponent(JSONObject input)throws JSONException {
+    private void setInputComponent(JSONObject input, LinearLayout layout)throws JSONException {
         if (input.has("type_format")){
             switch (input.get("type_format").toString()){
-                case "selection_collapsed": return createSpinner(input);
-                case "text_slider": return createSlider(input);
+                case "selection_collapsed":  createSpinner(input,layout);
+                    break;
+                case "text_slider":  createSlider(input,layout);
+                    break;
             }
         }else {
-            return createPlainText(input);
+            createEditText(input,layout);
         }
-        return null;
     }
 
-    private View createSlider(JSONObject input) {
+    private void createSlider(JSONObject input, LinearLayout layout) {
+        final TextView sliderValue = new TextView(applicationContext);
+        sliderValue.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));
+        sliderValue.setTextColor(Color.BLACK);
+        sliderValue.setText("0");
+        layout.addView(sliderValue);
         SeekBar seekBar = new SeekBar(applicationContext);
-        seekBar.setLayoutParams(new LinearLayout.LayoutParams(200,
-                ViewGroup.LayoutParams.WRAP_CONTENT));
-        return seekBar;
+        seekBar.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT,3));
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                sliderValue.setText(String.valueOf(progress));
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+        layout.addView(seekBar);
     }
 
-    private View createPlainText(JSONObject input) {
+    private void createEditText(JSONObject input, LinearLayout layout) {
         EditText text = new EditText(applicationContext);
-        text.setLayoutParams(new LinearLayout.LayoutParams(100,
-                ViewGroup.LayoutParams.WRAP_CONTENT));
-        return text;
+        text.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT, 3));
+        text.setInputType(InputType.TYPE_CLASS_NUMBER);
+        text.setMaxWidth(80);
+        layout.addView(text);
     }
 
-    private View createSpinner(JSONObject input) {
+    private void createSpinner(JSONObject input, LinearLayout layout) {
         String[] arraySpinner = new String[] {"2", "5", "10", "15", "20", "25", "30", "35", "40"};
         Spinner spinner = new Spinner(applicationContext);
-        spinner.setLayoutParams(new LinearLayout.LayoutParams(100,
-                ViewGroup.LayoutParams.WRAP_CONTENT));
-       spinner.setAdapter(new ArrayAdapter<>(applicationContext,android.R.layout.simple_spinner_item, arraySpinner));
-        return spinner;
+        spinner.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT, 3));
+        spinner.setAdapter(new ArrayAdapter<>(applicationContext, android.R.layout.simple_spinner_item, arraySpinner));
+        layout.addView(spinner);
     }
 
 

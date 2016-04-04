@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -11,8 +12,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import adapters.MyListAdapter;
+import dataCollector.JSONCollector;
 import dataCollector.MockJSONCollector;
 import model.RowParametersBuilder;
 
@@ -24,6 +27,18 @@ public class ParametersView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parameters);
         loadList();
+        runAction();
+    }
+
+    private void runAction() {
+        Button button = (Button) findViewById(R.id.run_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ParametersView.this, ResultView.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void loadList() {
@@ -32,7 +47,7 @@ public class ParametersView extends AppCompatActivity {
         mainListView.setAdapter(new MyListAdapter(this, R.layout.input_row, list) {
             @Override
             public void input(Object input, View view) {
-                new RowParametersBuilder(getApplicationContext(),this).createRow((JSONObject) input,view);
+                new RowParametersBuilder(getApplicationContext()).createRow((JSONObject) input, view);
             }
         });
     }
@@ -40,11 +55,14 @@ public class ParametersView extends AppCompatActivity {
     private ArrayList<JSONObject> obtainList() {
         ArrayList<JSONObject> list = new ArrayList<>();
         try {
+            JSONCollector jsonCollector = new JSONCollector();
+            JSONObject json = new JSONObject(jsonCollector.execute().get());
+            //JSONArray jsonParams = new JSONObject(jsonCollector.execute().get()).getJSONArray("params");
             JSONArray jsonParams = new MockJSONCollector().getJSON().getJSONArray("params");
             for (int i = 0; i < jsonParams.length(); i++) {
                 list.add(jsonParams.getJSONObject(i));
             }
-        } catch (JSONException e) {
+        } catch (JSONException | InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
         return list;
