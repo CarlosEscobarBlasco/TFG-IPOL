@@ -1,5 +1,7 @@
 package model.listElements;
 
+import com.github.ivbaranov.mfb.MaterialFavoriteButton;
+
 import app.com.example.carlos.tfgipol.R;
 import model.lists.Favourites;
 import model.lists.History;
@@ -9,15 +11,15 @@ import model.lists.History;
  */
 public class SubTopicElement {
     private String subTopicName;
-    private int favouriteStarImage;
+    private boolean favouriteStatus;
 
     public SubTopicElement(String name) {
         this.subTopicName = name;
-        this.favouriteStarImage = R.drawable.empty_star;
+        favouriteStatus = false;
     }
 
-    public int getFavouriteStarImage() {
-        return favouriteStarImage;
+    public boolean getFavouriteStatus() {
+        return favouriteStatus;
     }
 
     public String getSubTopicName() {
@@ -25,13 +27,12 @@ public class SubTopicElement {
     }
 
     public void addToFavourites(){
-        if(Favourites.getInstance().addFavourite(this)) favouriteStarImage = R.drawable.full_star;
-        else favouriteStarImage = R.drawable.empty_star;
+        favouriteStatus = Favourites.getInstance().addFavourite(this);
     }
 
     public void removeFromFavourites(){
         Favourites.getInstance().removeFavourite(this);
-        favouriteStarImage = R.drawable.empty_star;
+        favouriteStatus = false;
     }
 
     public void addToHistory(){

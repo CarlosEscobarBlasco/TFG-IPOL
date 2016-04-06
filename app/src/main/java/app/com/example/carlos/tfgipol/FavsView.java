@@ -5,6 +5,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 
+import com.github.ivbaranov.mfb.MaterialFavoriteButton;
+
 import java.util.ArrayList;
 
 import model.lists.Favourites;
@@ -20,7 +22,8 @@ public class FavsView extends MyListActivity {
     }
 
     @Override
-    public void favouriteButtonListener(Object input, Button favButton) {
+    public void favouriteButtonListener(Object input, MaterialFavoriteButton favButton) {
+        favButton.setFavorite(false);
         ((SubTopicElement) input).removeFromFavourites();
         loadList();
     }

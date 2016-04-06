@@ -5,6 +5,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 
+import com.github.ivbaranov.mfb.MaterialFavoriteButton;
+
 import java.util.ArrayList;
 
 import model.listElements.SubTopicElement;
@@ -23,9 +25,9 @@ public class InsideTopicView extends MyListActivity {
     }
 
     @Override
-    public void favouriteButtonListener(Object input, Button favButton) {
+    public void favouriteButtonListener(Object input, MaterialFavoriteButton favButton) {
+        favButton.setFavorite(!((SubTopicElement) input).getFavouriteStatus());
         ((SubTopicElement) input).addToFavourites();
-        favButton.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,(((SubTopicElement) input).getFavouriteStarImage()));
     }
 
     @Override

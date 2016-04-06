@@ -12,13 +12,11 @@
         android:padding="10dp"
         android:textColor="@android:color/black"
         android:layout_weight="0.99" />
+    
+    <com.github.ivbaranov.mfb.MaterialFavoriteButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rowFavButton"/>
 
-    <Button
-        android:id="@+id/rowFavButton"
-        android:layout_width="31dp"
-        android:layout_height="31dp"
-        android:drawableEnd="@drawable/empty_star"
-        android:background="@android:color/transparent"
-        android:gravity="bottom" />
 
 </LinearLayout>

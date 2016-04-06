@@ -7,10 +7,11 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.github.ivbaranov.mfb.MaterialFavoriteButton;
 
 import java.util.ArrayList;
 import adapters.MyListAdapter;
@@ -72,11 +73,12 @@ public abstract class MyListActivity extends AppCompatActivity {
         mainListView.setAdapter(new MyListAdapter(this, R.layout.text_and_button_row, list) {
             @Override
             public void input(final Object input, View view) {
-                final Button favButton = (Button) view.findViewById(R.id.rowFavButton);
+                final MaterialFavoriteButton favButton = (MaterialFavoriteButton) view.findViewById(R.id.rowFavButton);
                 if (input != null) {
                     TextView rowTextView = (TextView) view.findViewById(R.id.rowTextView);
                     rowTextView.setText(((SubTopicElement) input).getSubTopicName());
-                    favButton.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,((SubTopicElement) input).getFavouriteStarImage());
+                    favButton.setFavorite(((SubTopicElement) input).getFavouriteStatus());
+                    //favButton.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,((SubTopicElement) input).getFavouriteStatus());
                     favButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -112,7 +114,7 @@ public abstract class MyListActivity extends AppCompatActivity {
 
     public abstract void itemClickListener(AdapterView<?> parent, View view, int position, long id);
 
-    public abstract void favouriteButtonListener(Object input, Button favButton);
+    public abstract void favouriteButtonListener(Object input, MaterialFavoriteButton favButton);
 
     public abstract String setListTitle();
 
