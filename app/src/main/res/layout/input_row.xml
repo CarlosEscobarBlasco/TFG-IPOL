@@ -6,9 +6,9 @@
     android:layout_weight="10">
     <TextView
         android:layout_width="0dp"
-        android:maxWidth="@dimen/_180sdp"
         android:layout_height="match_parent"
         android:text="text"
+        android:gravity="center"
         android:layout_weight="7"
         android:id="@+id/input_row_text"
         android:textColor="@android:color/black"/>

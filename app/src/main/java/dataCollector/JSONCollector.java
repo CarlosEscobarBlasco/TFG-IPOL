@@ -19,17 +19,17 @@ public class JSONCollector extends AsyncTask<String, String, String> {
 
 
     private HttpURLConnection urlConnection;
-    private String urlDirection = "http://serdis.dis.ulpgc.es/~asalgado/nlmeans.json";
+    private String urlDirection;
 
-    public JSONCollector() {
+    public JSONCollector(String urlDirection) {
+        this.urlDirection = urlDirection;
     }
 
     @Override
     protected String doInBackground(String... args) {
-        System.out.println("entro en el background");
         String result = "";
         try {
-            URL url = new URL("http://api.geonames.org/citiesJSON?north=44.1&south=-9.9&east=-22.4&west=55.2&lang=de&username=demo");
+            URL url = new URL(urlDirection);
             urlConnection = (HttpURLConnection) url.openConnection();
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             BufferedReader reader = new BufferedReader(new InputStreamReader(in));

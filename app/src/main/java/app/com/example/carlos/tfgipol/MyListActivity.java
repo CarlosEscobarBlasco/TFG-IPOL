@@ -78,7 +78,6 @@ public abstract class MyListActivity extends AppCompatActivity {
                     TextView rowTextView = (TextView) view.findViewById(R.id.rowTextView);
                     rowTextView.setText(((SubTopicElement) input).getSubTopicName());
                     favButton.setFavorite(((SubTopicElement) input).getFavouriteStatus());
-                    //favButton.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,((SubTopicElement) input).getFavouriteStatus());
                     favButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {

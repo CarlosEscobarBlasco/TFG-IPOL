@@ -55,14 +55,13 @@ public class ParametersView extends AppCompatActivity {
     private ArrayList<JSONObject> obtainList() {
         ArrayList<JSONObject> list = new ArrayList<>();
         try {
-            JSONCollector jsonCollector = new JSONCollector();
-            JSONObject json = new JSONObject(jsonCollector.execute().get());
-            //JSONArray jsonParams = new JSONObject(jsonCollector.execute().get()).getJSONArray("params");
-            JSONArray jsonParams = new MockJSONCollector().getJSON().getJSONArray("params");
+            JSONCollector jsonCollector = new JSONCollector("http://serdis.dis.ulpgc.es/~asalgado/nlmeans.json");
+            JSONArray jsonParams = new JSONObject(jsonCollector.execute().get()).getJSONArray("params");
+            //JSONArray jsonParams = new MockJSONCollector().getJSON().getJSONArray("params");
             for (int i = 0; i < jsonParams.length(); i++) {
                 list.add(jsonParams.getJSONObject(i));
             }
-        } catch (JSONException | InterruptedException | ExecutionException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return list;

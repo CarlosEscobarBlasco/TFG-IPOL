@@ -1,8 +1,6 @@
 package model.listElements;
 
-import com.github.ivbaranov.mfb.MaterialFavoriteButton;
 
-import app.com.example.carlos.tfgipol.R;
 import model.lists.Favourites;
 import model.lists.History;
 

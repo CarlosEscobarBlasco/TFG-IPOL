@@ -3,6 +3,7 @@ package model;
 import android.content.Context;
 import android.graphics.Color;
 import android.text.InputType;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -37,6 +38,9 @@ public class RowParametersBuilder {
             setInputComponent(input, layout);
         } catch (JSONException ignored) {
         }
+//        rowTextView.setLayoutParams(new LinearLayout.LayoutParams(0,
+//                ViewGroup.LayoutParams.WRAP_CONTENT,7));
+//        rowTextView.setGravity(Gravity.CENTER);
     }
 
     private String setText(JSONObject input) throws JSONException {
@@ -92,7 +96,7 @@ public class RowParametersBuilder {
         String[] arraySpinner = new String[] {"2", "5", "10", "15", "20", "25", "30", "35", "40"};
         Spinner spinner = new Spinner(applicationContext);
         spinner.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT, 3));
+                ViewGroup.LayoutParams.MATCH_PARENT, 3));
         spinner.setAdapter(new ArrayAdapter<>(applicationContext, android.R.layout.simple_spinner_item, arraySpinner));
         layout.addView(spinner);
     }

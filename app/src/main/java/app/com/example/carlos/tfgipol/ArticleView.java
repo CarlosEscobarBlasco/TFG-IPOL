@@ -31,6 +31,9 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.ExecutionException;
+
+import dataCollector.URLImageCollector;
 
 public class ArticleView extends AppCompatActivity {
 
@@ -65,13 +68,22 @@ public class ArticleView extends AppCompatActivity {
             image1 = (ImageView) view.findViewById(R.id.imageView1);
             cameraAction(cameraButton);
             galleryAction(galleryButton);
+            try {
+                URLImageCollector urlImage= new URLImageCollector("http://www.trbimg.com/img-5081fde9/turbine/la-et-cm-dan-castellaneta-homer-simpson-to-sta-001/599/599x337");
+                System.out.println(urlImage.execute().get());
+                image1.setImageBitmap(urlImage.getBitmapFromURL());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
             return view;
         }
 
         @Override
         public void onActivityResult(int requestCode, int resultCode, Intent data) {
             if (requestCode == 0) {
-                image1.setImageBitmap(BitmapFactory.decodeFile(imageRoute));
+                //image1.setImageBitmap(BitmapFactory.decodeFile(imageRoute));
             }else if (requestCode == 1){
                 System.out.println(data.getData());
                 Uri selectedImageUri = data.getData();
