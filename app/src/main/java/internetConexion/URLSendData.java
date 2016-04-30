@@ -1,9 +1,7 @@
-package dataCollector;
+package internetConexion;
 
 import android.os.AsyncTask;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.util.Base64;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -13,33 +11,38 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * Created by Carlos on 17/03/2016.
+ * Created by Carlos on 26/04/2016.
  */
-public class JSONCollector extends AsyncTask<String, String, String> {
-
-
+public class URLSendData extends AsyncTask<String, String, String> {
     private HttpURLConnection urlConnection;
     private String urlDirection;
 
-    public JSONCollector(String urlDirection) {
-        this.urlDirection = urlDirection;
+    public URLSendData(String demoID,String... parameters) {
+        createURL(demoID,parameters);
+    }
+
+    private void createURL(String demoID,String[] parameters) {
+        this.urlDirection = "http://dev.ipol.im/~asalgado/ipol_demo_interpreter/"+demoID+"/mobile?id=alley&sigma=10";
     }
 
     @Override
     protected String doInBackground(String... args) {
         String result = "";
         try {
+                        System.out.println(urlDirection);
             URL url = new URL(urlDirection);
             urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestProperty("Authorization", "Basic " + Base64.encodeToString("demo:demo".getBytes(), Base64.NO_WRAP));
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             BufferedReader reader = new BufferedReader(new InputStreamReader(in));
             String line;
-            while ((line = reader.readLine()) != null) {result +=line;}
+            while ((line = reader.readLine()) != null) {
+                result +=line;
+            }
         }catch( Exception ignored) {
         }finally {
             urlConnection.disconnect();
         }
         return result;
     }
-
 }

@@ -1,4 +1,4 @@
-package dataCollector;
+package internetConexion;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,23 +17,37 @@ public class URLImageCollector extends AsyncTask<String, String, String> {
 
     private String urlDirection;
     private Bitmap bitmap;
+    private String user;
+    private String password;
 
     public URLImageCollector(String url) {
-        this.urlDirection = url;
+        this.urlDirection=url;
+        this.user="";
+        this.password="";
     }
+
+    public URLImageCollector(String url,String user, String password){
+        this.urlDirection=url;
+        this.user=user;
+        this.password=password;
+    }
+
 
     @Override
     protected String doInBackground(String... args) {
         try {
             URL url = new URL(urlDirection);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            if(user!="")connection.setRequestProperty("Authorization", "Basic " + Base64.encodeToString((user+":"+password).getBytes(), Base64.NO_WRAP));
             connection.setDoInput(true);
             connection.connect();
+            System.out.println(connection.getResponseCode());
             InputStream input = connection.getInputStream();
             Bitmap myBitmap = BitmapFactory.decodeStream(input);
             bitmap = myBitmap;
             return myBitmap.toString();
         } catch (IOException e) {
+            e.printStackTrace();
             // Log exception
             return null;
         }

@@ -9,6 +9,7 @@ import com.github.ivbaranov.mfb.MaterialFavoriteButton;
 
 import java.util.ArrayList;
 
+import model.AppController;
 import model.listElements.SubTopicElement;
 import model.lists.Topics;
 
@@ -32,7 +33,7 @@ public class InsideTopicView extends MyListActivity {
 
     @Override
     public String setListTitle() {
-        return "Topics ->";
+        return "Topics>";
     }
 
     @Override

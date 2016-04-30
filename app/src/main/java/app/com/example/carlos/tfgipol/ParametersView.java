@@ -8,15 +8,14 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 
 import adapters.MyListAdapter;
-import dataCollector.JSONCollector;
-import dataCollector.MockJSONCollector;
+import internetConexion.JSONCollector;
+import internetConexion.URLSendData;
+import model.AppController;
 import model.RowParametersBuilder;
 
 public class ParametersView extends AppCompatActivity {
@@ -55,9 +54,8 @@ public class ParametersView extends AppCompatActivity {
     private ArrayList<JSONObject> obtainList() {
         ArrayList<JSONObject> list = new ArrayList<>();
         try {
-            JSONCollector jsonCollector = new JSONCollector("http://serdis.dis.ulpgc.es/~asalgado/nlmeans.json");
+            JSONCollector jsonCollector = new JSONCollector("http://serdis.dis.ulpgc.es/~asalgado/"+AppController.getInstance().getDemoName()+".json");
             JSONArray jsonParams = new JSONObject(jsonCollector.execute().get()).getJSONArray("params");
-            //JSONArray jsonParams = new MockJSONCollector().getJSON().getJSONArray("params");
             for (int i = 0; i < jsonParams.length(); i++) {
                 list.add(jsonParams.getJSONObject(i));
             }

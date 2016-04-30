@@ -1,11 +1,6 @@
 package app.com.example.carlos.tfgipol;
 
-import android.content.ContentResolver;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -25,15 +20,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
-import dataCollector.URLImageCollector;
+import internetConexion.URLImageCollector;
+import model.AppController;
 
 public class ArticleView extends AppCompatActivity {
 
@@ -56,28 +50,33 @@ public class ArticleView extends AppCompatActivity {
 
 
     public static class DemoFragment extends Fragment {
-        ImageView image1;
+        //ImageView image1;
         String imageRoute;
         View view;
-        private String selectedImagePath;
+        //private String selectedImagePath;
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
             view = inflater.inflate(R.layout.fragment_demo, container, false);
             Button cameraButton = (Button) view.findViewById(R.id.camera_bttn);
             Button galleryButton = (Button) view.findViewById(R.id.gallery_bttn);
-            image1 = (ImageView) view.findViewById(R.id.imageView1);
+            //image1 = (ImageView) view.findViewById(R.id.imageView1);
             cameraAction(cameraButton);
             galleryAction(galleryButton);
             try {
-                URLImageCollector urlImage= new URLImageCollector("http://www.trbimg.com/img-5081fde9/turbine/la-et-cm-dan-castellaneta-homer-simpson-to-sta-001/599/599x337");
-                System.out.println(urlImage.execute().get());
-                image1.setImageBitmap(urlImage.getBitmapFromURL());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
+                setExampleImage((ImageView) view.findViewById(R.id.imageView1),"1");
+                setExampleImage((ImageView) view.findViewById(R.id.imageView2),"2");
+                setExampleImage((ImageView) view.findViewById(R.id.imageView3),"3");
+            } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
             return view;
+        }
+
+        private void setExampleImage(ImageView image, String number) throws InterruptedException, ExecutionException {
+            //URLImageCollector urlImage= new URLImageCollector("https://upload.wikimedia.org/wikipedia/commons/b/b4/JPEG_example_JPG_RIP_100.jpg");
+            URLImageCollector urlImage = new URLImageCollector("http://dev.ipol.im/~asalgado/ipol_demo_interpreter/input/"+ AppController.getInstance().getDemoName()+"/"+number+".png","demo","demo");
+            urlImage.execute().get();
+            image.setImageBitmap(urlImage.getBitmapFromURL());
         }
 
         @Override
@@ -122,7 +121,7 @@ public class ArticleView extends AppCompatActivity {
         }
 
         private String code(){
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyymmddhhmmss");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyymmddhhmmss", Locale.getDefault());
             String date = dateFormat.format(new Date());
             return "pic_" + date+".jpg";
         }
@@ -146,7 +145,6 @@ public class ArticleView extends AppCompatActivity {
             return fragment;
         }
     }
-
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 

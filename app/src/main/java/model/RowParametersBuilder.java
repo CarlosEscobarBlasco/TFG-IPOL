@@ -75,11 +75,16 @@ public class RowParametersBuilder {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 sliderValue.setText(String.valueOf(progress));
             }
+
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {}
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {}
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
         });
+        seekBar.setBackgroundColor(Color.LTGRAY);
         layout.addView(seekBar);
     }
 
@@ -89,6 +94,7 @@ public class RowParametersBuilder {
                 ViewGroup.LayoutParams.WRAP_CONTENT, 3));
         text.setInputType(InputType.TYPE_CLASS_NUMBER);
         text.setMaxWidth(80);
+        text.setBackgroundColor(Color.LTGRAY);
         layout.addView(text);
     }
 
@@ -98,6 +104,7 @@ public class RowParametersBuilder {
         spinner.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.MATCH_PARENT, 3));
         spinner.setAdapter(new ArrayAdapter<>(applicationContext, android.R.layout.simple_spinner_item, arraySpinner));
+        spinner.setBackgroundColor(Color.LTGRAY);
         layout.addView(spinner);
     }
 

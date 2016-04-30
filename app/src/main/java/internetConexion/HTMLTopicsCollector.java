@@ -1,4 +1,4 @@
-package dataCollector;
+package internetConexion;
 
 import android.os.AsyncTask;
 

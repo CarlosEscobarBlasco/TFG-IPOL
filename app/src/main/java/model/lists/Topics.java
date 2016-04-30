@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
-import dataCollector.HTMLTopicsCollector;
+import internetConexion.HTMLTopicsCollector;
 import model.listElements.SubTopicElement;
 import model.listElements.TopicElement;
 

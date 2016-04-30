@@ -1,6 +1,7 @@
 package model.listElements;
 
 
+import model.AppController;
 import model.lists.Favourites;
 import model.lists.History;
 
@@ -34,6 +35,7 @@ public class SubTopicElement {
     }
 
     public void addToHistory(){
+        AppController.getInstance().setDemoName("nlmeans");
         History.getInstance().addToHistory(this);
     }
 
