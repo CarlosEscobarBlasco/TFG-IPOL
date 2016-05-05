@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -25,6 +26,8 @@ public class ParametersView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parameters);
+        ImageView imageView = (ImageView) findViewById(R.id.exampleImage);
+        imageView.setImageBitmap(AppController.getInstance().getSelectedExampleImageBitmap());
         loadList();
         runAction();
     }

@@ -45,11 +45,36 @@
         android:layout_alignParentTop="false"
         android:paddingTop="@dimen/_35sdp" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/listTitle"
+        android:id="@+id/selectedImage">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Slected Image:"
+            android:textColor="@android:color/black"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_weight="1"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/_80sdp"
+            android:id="@+id/exampleImage"
+            android:layout_weight="1"
+            />
+
+    </LinearLayout>
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/inputList"
-        android:layout_below="@+id/listTitle"
+        android:layout_below="@+id/selectedImage"
         android:layout_marginTop="@dimen/_10sdp"
         android:paddingBottom="@dimen/_100sdp">
 

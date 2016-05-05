@@ -6,6 +6,7 @@ import android.text.InputType;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -105,6 +106,19 @@ public class RowParametersBuilder {
                 ViewGroup.LayoutParams.MATCH_PARENT, 3));
         spinner.setAdapter(new ArrayAdapter<>(applicationContext, android.R.layout.simple_spinner_item, arraySpinner));
         spinner.setBackgroundColor(Color.LTGRAY);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent,View view, int pos, long id) {
+                AppController.getInstance().setParam(parent.getItemAtPosition(pos).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+
+            }
+        });
         layout.addView(spinner);
     }
 

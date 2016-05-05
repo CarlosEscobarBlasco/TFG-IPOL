@@ -20,12 +20,6 @@ public class URLImageCollector extends AsyncTask<String, String, String> {
     private String user;
     private String password;
 
-    public URLImageCollector(String url) {
-        this.urlDirection=url;
-        this.user="";
-        this.password="";
-    }
-
     public URLImageCollector(String url,String user, String password){
         this.urlDirection=url;
         this.user=user;
@@ -36,9 +30,10 @@ public class URLImageCollector extends AsyncTask<String, String, String> {
     @Override
     protected String doInBackground(String... args) {
         try {
+            System.out.println(urlDirection);
             URL url = new URL(urlDirection);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            if(user!="")connection.setRequestProperty("Authorization", "Basic " + Base64.encodeToString((user+":"+password).getBytes(), Base64.NO_WRAP));
+            connection.setRequestProperty("Authorization", "Basic " + Base64.encodeToString((user+":"+password).getBytes(), Base64.NO_WRAP));
             connection.setDoInput(true);
             connection.connect();
             System.out.println(connection.getResponseCode());

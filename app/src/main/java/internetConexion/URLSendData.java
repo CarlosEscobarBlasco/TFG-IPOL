@@ -10,6 +10,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import model.AppController;
+
 /**
  * Created by Carlos on 26/04/2016.
  */
@@ -22,7 +24,8 @@ public class URLSendData extends AsyncTask<String, String, String> {
     }
 
     private void createURL(String demoID,String[] parameters) {
-        this.urlDirection = "http://dev.ipol.im/~asalgado/ipol_demo_interpreter/"+demoID+"/mobile?id=alley&sigma=10";
+        this.urlDirection =
+                "http://dev.ipol.im/~asalgado/ipol_demo_interpreter/"+demoID+"/mobile?id="+ AppController.getInstance().getSelectedExampleImage()+"&sigma="+AppController.getInstance().getParam();
     }
 
     @Override

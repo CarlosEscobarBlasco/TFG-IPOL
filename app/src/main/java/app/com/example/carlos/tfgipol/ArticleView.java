@@ -62,22 +62,24 @@ public class ArticleView extends AppCompatActivity {
             //image1 = (ImageView) view.findViewById(R.id.imageView1);
             cameraAction(cameraButton);
             galleryAction(galleryButton);
-            try {
-                setExampleImage((ImageView) view.findViewById(R.id.imageView1),"1");
-                setExampleImage((ImageView) view.findViewById(R.id.imageView2),"2");
-                setExampleImage((ImageView) view.findViewById(R.id.imageView3),"3");
-            } catch (InterruptedException | ExecutionException e) {
-                e.printStackTrace();
-            }
+            setExampleImage((ImageView) view.findViewById(R.id.imageView1), 1);
+            setExampleImage((ImageView) view.findViewById(R.id.imageView2),2);
+            setExampleImage((ImageView) view.findViewById(R.id.imageView3),3);
             return view;
         }
 
-        private void setExampleImage(ImageView image, String number) throws InterruptedException, ExecutionException {
-            //URLImageCollector urlImage= new URLImageCollector("https://upload.wikimedia.org/wikipedia/commons/b/b4/JPEG_example_JPG_RIP_100.jpg");
+        private void setExampleImage(final ImageView image,int number)  {
             URLImageCollector urlImage = new URLImageCollector("http://dev.ipol.im/~asalgado/ipol_demo_interpreter/input/"+ AppController.getInstance().getDemoName()+"/"+number+".png","demo","demo");
-            urlImage.execute().get();
+            try {
+                urlImage.execute().get();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
             image.setImageBitmap(urlImage.getBitmapFromURL());
+            image.buildDrawingCache();
+
         }
+
 
         @Override
         public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -176,6 +178,9 @@ public class ArticleView extends AppCompatActivity {
     }
 
     public void goToParameters(View view){
+        AppController.getInstance().setSelectedExampleImage(view.getTag().toString());
+        AppController.getInstance().setSelectedExampleImageBitmap(view.getDrawingCache());
+        System.out.println(view.getDrawingCache());
         Intent intent = new Intent(this, ParametersView.class);
         startActivity(intent);
     }

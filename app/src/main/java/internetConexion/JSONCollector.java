@@ -27,6 +27,7 @@ public class JSONCollector extends AsyncTask<String, String, String> {
         String result = "";
         try {
             URL url = new URL(urlDirection);
+            System.out.println(urlDirection);
             urlConnection = (HttpURLConnection) url.openConnection();
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             BufferedReader reader = new BufferedReader(new InputStreamReader(in));

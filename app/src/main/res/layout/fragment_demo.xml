@@ -51,6 +51,7 @@
         android:src="@android:drawable/ic_menu_report_image"
         android:layout_below="@+id/textView3"
         android:onClick="goToParameters"
+        android:tag="1"
         android:clickable="true"
         android:layout_toStartOf="@+id/textView"
         android:layout_marginTop="42dp" />
@@ -62,6 +63,7 @@
         android:src="@android:drawable/ic_menu_report_image"
         android:layout_alignBottom="@+id/imageView1"
         android:onClick="goToParameters"
+        android:tag="2"
         android:clickable="true"
         android:layout_centerHorizontal="true" />
 
@@ -70,6 +72,7 @@
         android:layout_height="@dimen/_70sdp"
         android:id="@+id/imageView3"
         android:onClick="goToParameters"
+        android:tag="3"
         android:clickable="true"
         android:src="@android:drawable/ic_menu_report_image"
         android:layout_alignTop="@+id/imageView2"
