@@ -13,6 +13,7 @@ public class AppController {
     private String selectedExampleImage;
     private String param;
     private Bitmap selectedExampleImageBitmap;
+    private String[] resultNames;
 
     private AppController(){
 
@@ -61,5 +62,13 @@ public class AppController {
 
     public void setSelectedExampleImageBitmap(Bitmap selectedExampleImageBitmap) {
         this.selectedExampleImageBitmap = selectedExampleImageBitmap;
+    }
+
+    public String[] getResultNames() {
+        return resultNames;
+    }
+
+    public void setResultNames(String[] resultNames) {
+        this.resultNames = resultNames;
     }
 }

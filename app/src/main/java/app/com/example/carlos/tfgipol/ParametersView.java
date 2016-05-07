@@ -1,8 +1,8 @@
 package app.com.example.carlos.tfgipol;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -15,7 +15,6 @@ import java.util.ArrayList;
 
 import adapters.MyListAdapter;
 import internetConexion.JSONCollector;
-import internetConexion.URLSendData;
 import model.AppController;
 import model.RowParametersBuilder;
 
@@ -44,7 +43,7 @@ public class ParametersView extends AppCompatActivity {
     }
 
     private void loadList() {
-        ArrayList<JSONObject> list = obtainList();
+        ArrayList<JSONObject> list = processJSON();
         mainListView = (ListView) findViewById(R.id.inputList);
         mainListView.setAdapter(new MyListAdapter(this, R.layout.input_row, list) {
             @Override
@@ -54,7 +53,7 @@ public class ParametersView extends AppCompatActivity {
         });
     }
 
-    private ArrayList<JSONObject> obtainList() {
+    private ArrayList<JSONObject> processJSON() {
         ArrayList<JSONObject> list = new ArrayList<>();
         try {
             JSONCollector jsonCollector = new JSONCollector("http://serdis.dis.ulpgc.es/~asalgado/"+AppController.getInstance().getDemoName()+".json");
@@ -62,6 +61,7 @@ public class ParametersView extends AppCompatActivity {
             for (int i = 0; i < jsonParams.length(); i++) {
                 list.add(jsonParams.getJSONObject(i));
             }
+            AppController.getInstance().setResultNames(new String[]{"Input_0_sel","Denoised","Img_diff","Noisy"});
         } catch (Exception e) {
             e.printStackTrace();
         }

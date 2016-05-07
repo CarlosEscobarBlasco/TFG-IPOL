@@ -18,8 +18,8 @@ public class MockJSONCollector {
                     "  'general': { \n" +
                     "     'demo_title':             'Non-Local Means Denoising',\n" +
                     "     'demo_email':              'asalgado@dis.ulpgc.es',\n" +
-                    "     'demo_input_description': 'To use correctly this demo, it is advised to upload good quality noiseless images. The algorithm will add to the image a white noise with the standard deviation you will select. The denoising algorithm uses only the knowledge of the standard deviation of the noise.',\n" +
-                    "     'demo_params_description': 'The algorithm is run in 2 steps:   <ol>  <li> a Gaussian noise is added to the input image; </li> <li> the NLmeans algorithm is used to denoise the image. </li> </ol>'\n" +
+                    "     'demo_input_description': 'To use correctly this demo, it is advised to upload good quality noiseless images. The algorithm will add to the image articleView white noise with the standard deviation you will select. The denoising algorithm uses only the knowledge of the standard deviation of the noise.',\n" +
+                    "     'demo_params_description': 'The algorithm is run in 2 steps:   <ol>  <li> articleView Gaussian noise is added to the input image; </li> <li> the NLmeans algorithm is used to denoise the image. </li> </ol>'\n" +
                     "  }, \n" +
                     "  'test': [ 'valldemossa', 'book', 'alley', 'trees', 'gardens' ], \n" +
                     "  'preprocess': [\n" +
@@ -60,8 +60,8 @@ public class MockJSONCollector {
                     "  'general': { \n" +
                     "     'demo_title':             'Non-Local Means Denoising',\n" +
                     "     'demo_email':              'asalgado@dis.ulpgc.es',\n" +
-                    "     'demo_input_description': 'To use correctly this demo, it is advised to upload good quality noiseless images. The algorithm will add to the image a white noise with the standard deviation you will select. The denoising algorithm uses only the knowledge of the standard deviation of the noise.',\n" +
-                    "     'demo_params_description': 'The algorithm is run in 2 steps:   <ol>  <li> a Gaussian noise is added to the input image; </li> <li> the NLmeans algorithm is used to denoise the image. </li> </ol>'\n" +
+                    "     'demo_input_description': 'To use correctly this demo, it is advised to upload good quality noiseless images. The algorithm will add to the image articleView white noise with the standard deviation you will select. The denoising algorithm uses only the knowledge of the standard deviation of the noise.',\n" +
+                    "     'demo_params_description': 'The algorithm is run in 2 steps:   <ol>  <li> articleView Gaussian noise is added to the input image; </li> <li> the NLmeans algorithm is used to denoise the image. </li> </ol>'\n" +
                     "  }, \n" +
                     "  'test': [ 'valldemossa', 'book', 'alley', 'trees', 'gardens' ], \n" +
                     "  'preprocess': [\n" +
@@ -115,7 +115,7 @@ public class MockJSONCollector {
                     "    {\n" +
                     "      'id'            : 'sigma',\n" +
                     "      'type'          : 'float', \n" +
-                    "      'label'         : 'select a level:',\n" +
+                    "      'label'         : 'select articleView level:',\n" +
                     "      'default_value' : '2:2, 5:5, 10:10, 15:15, 20:20, 25:25, 30:30, 35:35, 40:40',\n" +
                     "      'type_format'   : 'text_slider'\n" +
                     "    },\n" +

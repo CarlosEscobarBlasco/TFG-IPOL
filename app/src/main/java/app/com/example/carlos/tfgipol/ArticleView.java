@@ -2,11 +2,9 @@ package app.com.example.carlos.tfgipol;
 
 import android.content.ContentResolver;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -24,7 +22,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -39,7 +36,7 @@ public class ArticleView extends AppCompatActivity {
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
     static protected ContentResolver resolver;
-    static protected ArticleView a;
+    static protected ArticleView articleView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +50,7 @@ public class ArticleView extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
         resolver = this.getContentResolver();
-        a=this;
+        articleView =this;
     }
 
 
@@ -90,15 +87,13 @@ public class ArticleView extends AppCompatActivity {
             super.onActivityResult(requestCode, resultCode, data);
             if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
                 Bitmap photo = (Bitmap) data.getExtras().get("data");
-                //AppController.getInstance().setSelectedExampleImageBitmap(photo);
-                a.goToParametersWithOwnImage(photo);
+                articleView.goToParametersWithOwnImage(photo);
             }
             else if (data != null && requestCode == GALLERY_REQUEST_CODE) {
                 try {
                     Uri imageUri = data.getData();
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(resolver,imageUri);
-                    a.goToParametersWithOwnImage(bitmap);
-                    //AppController.getInstance().setSelectedExampleImageBitmap(bitmap);
+                    articleView.goToParametersWithOwnImage(bitmap);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -109,7 +104,7 @@ public class ArticleView extends AppCompatActivity {
             galleryButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    final Intent galleryIntent = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    Intent galleryIntent = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     startActivityForResult(galleryIntent,GALLERY_REQUEST_CODE);
                 }
             });
@@ -182,7 +177,7 @@ public class ArticleView extends AppCompatActivity {
 
     public void goToParametersWithExample(View view){
         AppController.getInstance().setSelectedExampleImage(view.getTag().toString());
-        AppController.getInstance().setSelectedExampleImageBitmap(view.getDrawingCache());
+        AppController.getInstance().setSelectedExampleImageBitmap(((BitmapDrawable) ((ImageView) view).getDrawable()).getBitmap());
         System.out.println(view.getDrawingCache());
         Intent intent = new Intent(this, ParametersView.class);
         startActivity(intent);

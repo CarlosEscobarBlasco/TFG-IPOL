@@ -45,8 +45,8 @@ public abstract class MyListAdapter extends BaseAdapter {
         return position;
     }
 
-    /** Devuelve cada una de las list con cada una de las vistas a la que debe de ser asociada
-     * @param input La enrada que será la asociada a la view. La entrada es del tipo del paquete/handler
+    /** Devuelve cada una de las list con cada una de las vistas articleView la que debe de ser asociada
+     * @param input La enrada que será la asociada articleView la view. La entrada es del tipo del paquete/handler
      * @param view View particular que contendrá los datos del paquete/handler
      */
     public abstract void input(Object input, View view);

@@ -3,16 +3,10 @@ package app.com.example.carlos.tfgipol;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.media.Image;
-import android.os.AsyncTask;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -24,13 +18,12 @@ import adapters.MyListAdapter;
 import internetConexion.URLImageCollector;
 import internetConexion.URLSendData;
 import model.AppController;
-import model.listElements.TopicElement;
-import model.lists.Topics;
 
 public class ResultView extends AppCompatActivity {
     private ProgressDialog progress;
     private ListView mainListView;
-    private ArrayList<Bitmap> list = new ArrayList<>();
+    private ArrayList<ListElement> list = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,20 +42,31 @@ public class ResultView extends AppCompatActivity {
             @Override
             public void run() {
                 mainListView = (ListView) findViewById(R.id.list);
-                System.out.println("carga la lista");
                 mainListView.setAdapter(new MyListAdapter(activity, R.layout.image_row, list) {
                     @Override
                     public void input(final Object input, final View view) {
                         if (input != null) {
+                            TextView text = (TextView) view.findViewById(R.id.resultText);
+                            text.setText(((ListElement) input).getName());
+
                             ImageView image = (ImageView) view.findViewById(R.id.resultImage);
-                            image.setImageBitmap((Bitmap) input);
+                            image.setImageBitmap(((ListElement) input).getBitmap());
+
+                            TextView url = (TextView) view.findViewById(R.id.resultUrl);
+                            url.setText("Open full image");
+
+                            url.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(((ListElement) input).getUrl()));
+                                    startActivity(browserIntent);
+                                }
+                            });
                         }
                     }
                 });
             }
         });
-
-
     }
 
     private void sendData() {
@@ -76,20 +80,16 @@ public class ResultView extends AppCompatActivity {
     }
 
     private void setResults(String name) {
-        final URLImageCollector imageCollector = new URLImageCollector("http://dev.ipol.im/~asalgado/ipol_demo_interpreter/"+AppController.getInstance().getDemoName()+"/tmp/"+ AppController.getInstance().getKey()+"/"+name+"_thumbnail.png","demo","demo");
+        String url = "dev.ipol.im/~asalgado/ipol_demo_interpreter/"+AppController.getInstance().getDemoName()+"/tmp/"+ AppController.getInstance().getKey()+"/"+name;
+        final URLImageCollector imageCollector = new URLImageCollector("http://"+url+"_thumbnail.png","demo","demo");
         try {
             imageCollector.execute().get();
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    System.out.println("añade el bitmap a la lista");
-                    list.add(imageCollector.getBitmapFromURL());
-                    /*ImageView imageView = (ImageView) findViewById(R.id.resultImage);
-                    imageView.setImageBitmap(imageCollector.getBitmapFromURL());*/
-                }
-            });
-
-        } catch (InterruptedException | ExecutionException e) {e.printStackTrace();}
+            char[] charArray = name.toCharArray();
+            charArray[0]=Character.toUpperCase(charArray[0]);
+            list.add(new ListElement(imageCollector.getBitmapFromURL(),new String(charArray),"http://demo:demo@"+url+".png"));
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showProgressDialog(){
@@ -99,6 +99,7 @@ public class ResultView extends AppCompatActivity {
                 progress = new ProgressDialog(ResultView.this);
                 progress.setTitle("Running");
                 progress.setMessage("The algorithm is running. After 30s or less, you will get the results");
+                progress.setCanceledOnTouchOutside(false);
                 progress.show();
             }
         });
@@ -124,13 +125,36 @@ public class ResultView extends AppCompatActivity {
         public void run() {
             showProgressDialog();
             sendData();
-            setResults("denoised");
-            setResults("input_0_sel");
-            setResults("img_diff");
-            setResults("noisy");
+            for (String name :AppController.getInstance().getResultNames()) {
+                setResults(name.toLowerCase());
+            }
             onRestart();
             stopProgressDialog();
         }
     }
 
+    private class ListElement{
+        private Bitmap bitmap;
+        private String name;
+        private String url;
+
+        public ListElement(Bitmap bitmap, String name, String url) {
+            this.bitmap = bitmap;
+            this.name = name;
+            this.url = url;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public Bitmap getBitmap() {
+            return bitmap;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+    }
 }

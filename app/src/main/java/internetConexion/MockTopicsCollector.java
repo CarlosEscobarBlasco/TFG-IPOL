@@ -18,7 +18,7 @@ public class MockTopicsCollector {
 
     private void loadList() {
         createTopic("3D", "An Implementation and Parallelization of the Scale Space Meshing Algorithm",
-                "An Analysis and Implementation of a Parallel Ball Pivoting Algorithm",
+                "An Analysis and Implementation of articleView Parallel Ball Pivoting Algorithm",
                 "Farman Institute 3D Point Sets - High Precision 3D Data Sets");
 
         createTopic("Blur", "Computing an Exact Gaussian Scale-Space",
@@ -40,7 +40,7 @@ public class MockTopicsCollector {
                 "Simplest Color Balance",
                 "Local Color Correction",
                 "Image Color Cube Dimensional Filtering and Visualization",
-                "Retinex Poisson Equation: a Model for Color Perception",
+                "Retinex Poisson Equation: articleView Model for Color Perception",
                 "Midway Image Equalization");
 
         createTopic("Computational Photography","The Flutter Shutter Code Calculator",

@@ -45,13 +45,13 @@ public class HTMLTopicsCollector {
         ArrayList<String>result=new ArrayList<>();
         String topic;
         for (int i = 0; i < pageInLInes.length; i++) {
-            if(pageInLInes[i].contains("</a></h2>")){
-                pageInLInes[i]=pageInLInes[i].substring(0,pageInLInes[i].lastIndexOf("</a></h2>"));
+            if(pageInLInes[i].contains("</articleView></h2>")){
+                pageInLInes[i]=pageInLInes[i].substring(0,pageInLInes[i].lastIndexOf("</articleView></h2>"));
                 topic=pageInLInes[i].substring(pageInLInes[i].lastIndexOf(">")+1);
                 i++;
-                while (!pageInLInes[i].contains("</a></h2>")){
-                    if(pageInLInes[i].contains("</a><br />")) {
-                        pageInLInes[i]=pageInLInes[i].substring(0,pageInLInes[i].lastIndexOf("</a><br />"));
+                while (!pageInLInes[i].contains("</articleView></h2>")){
+                    if(pageInLInes[i].contains("</articleView><br />")) {
+                        pageInLInes[i]=pageInLInes[i].substring(0,pageInLInes[i].lastIndexOf("</articleView><br />"));
                         topic+=","+pageInLInes[i].substring(pageInLInes[i].lastIndexOf(">")+1);
                     }
                     if(i+1<pageInLInes.length)i++;
