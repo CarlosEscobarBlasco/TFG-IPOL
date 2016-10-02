@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import adapters.MyListAdapter;
+import internetConexion.SendImage;
+import internetConexion.SendImage2;
 import internetConexion.URLImageCollector;
 import internetConexion.URLSendData;
 import model.AppController;
@@ -71,9 +73,16 @@ public class ResultView extends AppCompatActivity {
 
     private void sendData() {
         AppController appController = AppController.getInstance();
-        URLSendData urlSendData = new URLSendData(appController.getDemoName(),"parameters");
         try {
-            appController.setKey(urlSendData.execute().get());
+            if(AppController.getInstance().getSelectedExampleImageNumber()!="-1"){
+                URLSendData urlSendData = new URLSendData(appController.getDemoName(),"parameters");
+                appController.setKey(urlSendData.execute().get());
+            }else{
+//                SendImage2 urlSendData = new SendImage2(appController.getDemoName(),getApplicationContext());
+//                urlSendData.execute();
+                SendImage urlSendData = new SendImage(appController.getDemoName());
+                appController.setKey(urlSendData.execute().get());
+            }
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }

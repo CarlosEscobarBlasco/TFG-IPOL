@@ -1,6 +1,10 @@
 package model;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
+
+import java.io.ByteArrayOutputStream;
 
 /**
  * Created by Carlos on 28/04/2016.
@@ -10,9 +14,9 @@ public class AppController {
     private static AppController instance;
     private String key;
     private String demoName;
-    private String selectedExampleImage;
+    private String selectedExampleImageNumber;
     private String param;
-    private Bitmap selectedExampleImageBitmap;
+    private Bitmap selectedImage;
     private String[] resultNames;
 
     private AppController(){
@@ -40,12 +44,12 @@ public class AppController {
         this.demoName = demoName;
     }
 
-    public void setSelectedExampleImage(String selectedExampleImage) {
-        this.selectedExampleImage = selectedExampleImage;
+    public void setSelectedExampleImageNumber(String selectedExampleImageNumber) {
+        this.selectedExampleImageNumber = selectedExampleImageNumber;
     }
 
-    public String getSelectedExampleImage() {
-        return selectedExampleImage;
+    public String getSelectedExampleImageNumber() {
+        return selectedExampleImageNumber;
     }
 
     public void setParam(String param) {
@@ -56,12 +60,12 @@ public class AppController {
         return param;
     }
 
-    public Bitmap getSelectedExampleImageBitmap() {
-        return selectedExampleImageBitmap;
+    public Bitmap getSelectedImage() {
+        return selectedImage;
     }
 
-    public void setSelectedExampleImageBitmap(Bitmap selectedExampleImageBitmap) {
-        this.selectedExampleImageBitmap = selectedExampleImageBitmap;
+    public void setSelectedImage(Bitmap selectedImage) {
+        this.selectedImage = selectedImage;
     }
 
     public String[] getResultNames() {
@@ -71,4 +75,5 @@ public class AppController {
     public void setResultNames(String[] resultNames) {
         this.resultNames = resultNames;
     }
+
 }

@@ -84,19 +84,19 @@ public class ArticleView extends AppCompatActivity {
 
         @Override
         public void onActivityResult(int requestCode, int resultCode, Intent data) {
-            super.onActivityResult(requestCode, resultCode, data);
-            if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
-                Bitmap photo = (Bitmap) data.getExtras().get("data");
-                articleView.goToParametersWithOwnImage(photo);
-            }
-            else if (data != null && requestCode == GALLERY_REQUEST_CODE) {
-                try {
-                    Uri imageUri = data.getData();
-                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(resolver,imageUri);
-                    articleView.goToParametersWithOwnImage(bitmap);
-                } catch (IOException e) {
-                    e.printStackTrace();
+            try {
+                super.onActivityResult(requestCode, resultCode, data);
+                Bitmap photo;
+                if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
+                    photo = (Bitmap) data.getExtras().get("data");
+                    articleView.goToParametersWithOwnImage(photo);
                 }
+                else if (data != null && requestCode == GALLERY_REQUEST_CODE) {
+                    photo = MediaStore.Images.Media.getBitmap(resolver,data.getData());
+                    articleView.goToParametersWithOwnImage(photo);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
 
@@ -176,16 +176,16 @@ public class ArticleView extends AppCompatActivity {
     }
 
     public void goToParametersWithExample(View view){
-        AppController.getInstance().setSelectedExampleImage(view.getTag().toString());
-        AppController.getInstance().setSelectedExampleImageBitmap(((BitmapDrawable) ((ImageView) view).getDrawable()).getBitmap());
+        AppController.getInstance().setSelectedExampleImageNumber(view.getTag().toString());
+        AppController.getInstance().setSelectedImage(((BitmapDrawable) ((ImageView) view).getDrawable()).getBitmap());
         System.out.println(view.getDrawingCache());
         Intent intent = new Intent(this, ParametersView.class);
         startActivity(intent);
     }
 
     public void goToParametersWithOwnImage(Bitmap bitmap){
-        AppController.getInstance().setSelectedExampleImage("1");
-        AppController.getInstance().setSelectedExampleImageBitmap(bitmap);
+        AppController.getInstance().setSelectedExampleImageNumber("-1");
+        AppController.getInstance().setSelectedImage(bitmap);
         Intent intent = new Intent(this, ParametersView.class);
         startActivity(intent);
     }

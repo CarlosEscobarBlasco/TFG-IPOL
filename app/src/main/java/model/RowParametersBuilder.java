@@ -30,34 +30,32 @@ public class RowParametersBuilder {
         this.applicationContext = applicationContext;
     }
 
-    public void createRow(JSONObject input, View view) {
+    public void createRow(JSONObject json, View view) {
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.input_row_layout);
         TextView rowTextView = (TextView) view.findViewById(R.id.input_row_text);
         try {
-            if (rowTextView.getText().equals(setText(input)))return;
-            rowTextView.setText(setText(input));
-            setInputComponent(input, layout);
-        } catch (JSONException ignored) {
+            if (rowTextView.getText().equals(setText(json)))return;
+            rowTextView.setText(setText(json));
+            setInputComponent(json, layout);
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
-//        rowTextView.setLayoutParams(new LinearLayout.LayoutParams(0,
-//                ViewGroup.LayoutParams.WRAP_CONTENT,7));
-//        rowTextView.setGravity(Gravity.CENTER);
     }
 
     private String setText(JSONObject input) throws JSONException {
         return input.get("label").toString();
     }
 
-    private void setInputComponent(JSONObject input, LinearLayout layout)throws JSONException {
-        if (input.has("type_format")){
-            switch (input.get("type_format").toString()){
-                case "selection_collapsed":  createSpinner(input,layout);
+    private void setInputComponent(JSONObject json, LinearLayout layout)throws JSONException {
+        if (json.has("type_format")){
+            switch (json.get("type_format").toString()){
+                case "selection_collapsed":  createSpinner(json,layout);
                     break;
-                case "text_slider":  createSlider(input,layout);
+                case "text_slider":  createSlider(json,layout);
                     break;
             }
         }else {
-            createEditText(input,layout);
+            createEditText(json,layout);
         }
     }
 

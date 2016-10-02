@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 import adapters.MyListAdapter;
 import internetConexion.JSONCollector;
+import internetConexion.MockJSONCollector;
 import model.AppController;
 import model.RowParametersBuilder;
 
@@ -26,7 +27,7 @@ public class ParametersView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parameters);
         ImageView imageView = (ImageView) findViewById(R.id.exampleImage);
-        imageView.setImageBitmap(AppController.getInstance().getSelectedExampleImageBitmap());
+        imageView.setImageBitmap(AppController.getInstance().getSelectedImage());
         loadList();
         runAction();
     }
@@ -61,7 +62,7 @@ public class ParametersView extends AppCompatActivity {
             for (int i = 0; i < jsonParams.length(); i++) {
                 list.add(jsonParams.getJSONObject(i));
             }
-            AppController.getInstance().setResultNames(new String[]{"Input_0_sel","Denoised","Img_diff","Noisy"});
+            AppController.getInstance().setResultNames(new String[]{"Input_0_sel", "Denoised", "Img_diff", "Noisy"});
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -92,32 +92,11 @@ public class MockJSONCollector {
                     "      'type_format'   : 'text_slider'\n" +
                     "    },\n" +
                     "    {\n" +
-                    "      'id'            : 'alpha',\n" +
-                    "      'type'          : 'float', \n" +
-                    "      'label'         : 'Standard deviation: ',\n" +
-                    "      'tooltip'       : '(weight of the regularization term, e.g. &alpha;=1 discontinuous flow, &alpha;=40 smooth flow)',\n" +
-                    "      'default_value' : '15'\n" +
-                    "    },\n" +
-                    "    {\n" +
-                    "      'id'            : 'alpha',\n" +
-                    "      'type'          : 'float', \n" +
-                    "      'label'         : 'Output/input size ratio: ',\n" +
-                    "      'tooltip'       : '(weight of the regularization term, e.g. &alpha;=1 discontinuous flow, &alpha;=40 smooth flow)',\n" +
-                    "      'default_value' : '15'\n" +
-                    "    },\n" +
-                    "    {\n" +
                     "      'id'            : 'sigma',\n" +
                     "      'type'          : 'float', \n" +
                     "      'label'         : 'Select additive Gaussian noise:',\n" +
                     "      'default_value' : '2:2, 5:5, 10:10, 15:15, 20:20, 25:25, 30:30, 35:35, 40:40',\n" +
                     "      'type_format'   : 'selection_collapsed'\n" +
-                    "    },\n" +
-                    "    {\n" +
-                    "      'id'            : 'sigma',\n" +
-                    "      'type'          : 'float', \n" +
-                    "      'label'         : 'select articleView level:',\n" +
-                    "      'default_value' : '2:2, 5:5, 10:10, 15:15, 20:20, 25:25, 30:30, 35:35, 40:40',\n" +
-                    "      'type_format'   : 'text_slider'\n" +
                     "    },\n" +
                     "    {\n" +
                     "      'id'            : 'alpha',\n" +
